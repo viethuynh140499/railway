@@ -38,8 +38,8 @@ public class BookTicketTest {
         js.executeScript("window.scrollBy(0,250)");
         loginPage.login(Constant.USERNAME, Constant.PASSWORD);
         BookTicketPage bookTicketPage = homePage.goToBookTicketPage();
-        js.executeScript("window.scrollBy(0,250)");
-        bookTicketPage.bookTicket(Constant.DEPART_DATE,Constant.DEPART_FROM,Constant.ARRIVE_AT,Constant.SEAT_TYPE,Constant.TICKET_AMOUNT);
+        js.executeScript("window.scrollBy(0,500)");
+        bookTicketPage.bookTicket(Constant.DEPART_DATE,Constant.DEPART_FROM,Constant.ARRIVE_AT,Constant.SEAT_TYPE,Constant.TICKET_AMOUNT,Constant.CURRENT_DATE);
 
     }
 }

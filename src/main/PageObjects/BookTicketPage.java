@@ -3,18 +3,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class BookTicketPage extends Genneral{
 
-    public final By sltDepartDate = By.cssSelector("[name='Date']");
-    public final By sltDepartFrom = By.cssSelector("[name='DepartStation']");
-    public final By sltArriveAt = By.cssSelector("[name='ArriveStation']");
-    public final By sltSeatType = By.cssSelector("[name='SeatType']");
-    public final By sltTicketAmount = By.cssSelector("[name='TicketAmount']");
-    public final By btnBookTicket = By.cssSelector("[value='Book ticket']");
-    public final By lblErrorMessage = By.cssSelector("[align$='left'] p");
-    public final By lblErrorMessageTicketAmount = By.cssSelector(".validation-error");
+    private final By sltDepartDate = By.cssSelector("[name='Date']");
+    private final By sltDepartFrom = By.cssSelector("[name='DepartStation']");
+    private final By sltArriveAt = By.cssSelector("[name='ArriveStation']");
+    private final By sltSeatType = By.cssSelector("[name='SeatType']");
+    private final By sltTicketAmount = By.cssSelector("[name='TicketAmount']");
+    private final By btnBookTicket = By.cssSelector("[value='Book ticket']");
+    private final By lblErrorMessage = By.cssSelector("[align$='left'] p");
+    private final By lblErrorMessageTicketAmount = By.cssSelector(".validation-error");
 
 
     public WebElement getSltDepartDate() {
@@ -49,13 +49,26 @@ public class BookTicketPage extends Genneral{
         return Constant.WEBDRIVER.findElement(lblErrorMessageTicketAmount);
     }
 
-    public SuccessPage bookTicket(String departDate, String departFrom, String arriveAt, String seatType, int ticketAmount){
+    public LocalDate getCurrentBookingDate(){
+        return LocalDate.now();
+    }
 
-        Select sltDepartDate = new Select(this.getSltDepartDate().findElement(By.name("ArriveStation")));
-        Select sltDepartFrom = new Select(this.getSltDepartFrom().findElement(By.name("DepartStation")));
-        Select sltArriveAt = new Select(this.getSltArriveAt().findElement(By.name("ArriveStation")));
-        Select sltSeatType = new Select(this.getSltSeatType().findElement(By.name("SeatType")));
-        Select sltTicketAmount = new Select(this.getSltTicketAmount().findElement(By.name("TicketAmount")));
+
+
+
+    public SuccessPage bookTicket(String departDate, String departFrom, String arriveAt, String seatType, int ticketAmount, LocalDate currentBookingDate){
+        Select sltDepartDate = new Select(this.getSltDepartDate());
+        sltDepartDate.selectByVisibleText("4/25/2021");
+        Select sltDepartFrom = new Select(this.getSltDepartFrom());
+        sltDepartFrom.selectByVisibleText("Đà Nẵng");
+        Select sltArriveAt = new Select(this.getSltArriveAt());
+        sltArriveAt.selectByVisibleText("Quảng Ngãi");
+        Select sltSeatType = new Select(this.getSltSeatType());
+        sltSeatType.selectByVisibleText("Soft seat");
+        Select sltTicketAmount = new Select(this.getSltTicketAmount());
+        sltTicketAmount.selectByValue(String.valueOf(2));
+
+
         this.getBtnBookTicket().click();
 
         return new SuccessPage();

@@ -2,6 +2,7 @@ package constant;
 
 import org.openqa.selenium.WebDriver;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class Constant {
     public static final String ARRIVE_AT = "Sài Gòn";
     public static final String SEAT_TYPE = "Hard bed";
     public static final int TICKET_AMOUNT= 1;
+    public static final LocalDate CURRENT_DATE = LocalDate.now();
 
 
 }
