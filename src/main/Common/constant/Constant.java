@@ -11,6 +11,10 @@ public class Constant {
     public static final String RAILWAY_URL = "http://www.railway.somee.com/";
     public static final String USERNAME = "asas4@gmail.com";
     public static final String PASSWORD = "viet123456";
+    public static final String ERRORMESSAGE = "Invalid username or password. Please try again.";
+    public static final String USERNAMEINVALD = "You must specify a username.";
+    public static final String PASSWORDINVALD = "You must specify a password.";
+    public static final String ERRORINFORMATION = "There was a problem with your login and/or errors exist in your form.";
 
     public static final String DEPART_DATE = "4/24/2021";
     public static final String DEPART_FROM = "Phan Thiết";

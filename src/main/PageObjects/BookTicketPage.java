@@ -5,7 +5,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.time.LocalDate;
 
-public class BookTicketPage extends Genneral{
+public class BookTicketPage extends Genneral {
 
     private final By sltDepartDate = By.cssSelector("[name='Date']");
     private final By sltDepartFrom = By.cssSelector("[name='DepartStation']");
@@ -49,14 +49,12 @@ public class BookTicketPage extends Genneral{
         return Constant.WEBDRIVER.findElement(lblErrorMessageTicketAmount);
     }
 
-    public LocalDate getCurrentBookingDate(){
+    public LocalDate getCurrentBookingDate() {
         return LocalDate.now();
     }
 
 
-
-
-    public SuccessPage bookTicket(String departDate, String departFrom, String arriveAt, String seatType, int ticketAmount, LocalDate currentBookingDate){
+    public SuccessPage bookTicket(String departDate, String departFrom, String arriveAt, String seatType, int ticketAmount, LocalDate currentBookingDate) {
         Select sltDepartDate = new Select(this.getSltDepartDate());
         sltDepartDate.selectByVisibleText("4/25/2021");
         Select sltDepartFrom = new Select(this.getSltDepartFrom());

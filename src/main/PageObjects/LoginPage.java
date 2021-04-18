@@ -44,13 +44,49 @@ public class LoginPage extends Genneral{
         return  Constant.WEBDRIVER.findElement(linkForgotPassword);
     }
 
+    public String getLoginErrorMessage(){
+        return this.getLblErrorMessage().getText();
 
-    public HomePage login(String username, String password){
+    }
+
+    public String getErrorEnterUsername(){
+        return this.getLblErrorUsername().getText();
+    }
+
+    public String getErrorEnterPassword(){
+        return this.getLblErrorPassword().getText();
+    }
+
+    public HomePage loginSuccessfully(String username, String password){
         this.getTxtEmail().sendKeys("asas4@gmail.com");
         this.getTxtPassword().sendKeys("viet123456");
         this.getBtnLogin().click();
 
         return new HomePage();
+    }
+
+    public LoginPage loginUnSuccessfully(String username, String password){
+        this.getTxtEmail().sendKeys("asas4@gmail.com");
+        this.getTxtPassword().sendKeys("viet1234567");
+        this.getBtnLogin().click();
+
+        return new LoginPage();
+    }
+
+    public LoginPage usernameInvalid(String username){
+        this.getTxtEmail().sendKeys("");
+        this.getTxtPassword().sendKeys("viet123456");
+        this.getBtnLogin().click();
+
+        return new LoginPage();
+    }
+
+    public LoginPage passwordInvalid(String password){
+        this.getTxtEmail().sendKeys("asas5@gmai.com");
+        this.getTxtPassword().sendKeys("");
+        this.getBtnLogin().click();
+
+        return new LoginPage();
     }
 
 }
