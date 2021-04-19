@@ -54,7 +54,7 @@ public class BookTicketPage extends Genneral {
     }
 
 
-    public SuccessPage bookTicket(String departDate, String departFrom, String arriveAt, String seatType, int ticketAmount, LocalDate currentBookingDate) {
+    public void SuccessPage(String departDate, String departFrom, String arriveAt, String seatType, int ticketAmount, LocalDate currentBookingDate) {
         Select sltDepartDate = new Select(this.getSltDepartDate());
         sltDepartDate.selectByVisibleText("4/25/2021");
         Select sltDepartFrom = new Select(this.getSltDepartFrom());
@@ -69,6 +69,6 @@ public class BookTicketPage extends Genneral {
 
         this.getBtnBookTicket().click();
 
-        return new SuccessPage();
+//        return new SuccessPage();
     }
 }

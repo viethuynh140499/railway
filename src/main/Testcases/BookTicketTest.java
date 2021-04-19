@@ -36,10 +36,10 @@ public class BookTicketTest {
         homePage.open();
         LoginPage loginPage = homePage.goToLoginPage();
         js.executeScript("window.scrollBy(0,250)");
-        loginPage.loginSuccessfully(Constant.USERNAME, Constant.PASSWORD);
+        loginPage.LoginPage(Constant.USERNAME, Constant.PASSWORD);
         BookTicketPage bookTicketPage = homePage.goToBookTicketPage();
         js.executeScript("window.scrollBy(0,500)");
-        bookTicketPage.bookTicket(Constant.DEPART_DATE,Constant.DEPART_FROM,Constant.ARRIVE_AT,Constant.SEAT_TYPE,Constant.TICKET_AMOUNT,Constant.CURRENT_DATE);
+        bookTicketPage.SuccessPage(Constant.DEPART_DATE,Constant.DEPART_FROM,Constant.ARRIVE_AT,Constant.SEAT_TYPE,Constant.TICKET_AMOUNT,Constant.CURRENT_DATE);
 
     }
 }

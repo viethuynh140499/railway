@@ -2,7 +2,7 @@ import constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends Genneral{
+public class LoginPage extends Genneral {
     public final By txtEmail = By.cssSelector("[id$=username]");
     public final By txtPassword = By.cssSelector("[id$=password]");
     public final By btnLogin = By.cssSelector("[title='Login']");
@@ -17,63 +17,59 @@ public class LoginPage extends Genneral{
     }
 
     public WebElement getTxtPassword() {
-        return  Constant.WEBDRIVER.findElement(txtPassword);
+        return Constant.WEBDRIVER.findElement(txtPassword);
     }
 
     public WebElement getBtnLogin() {
-        return  Constant.WEBDRIVER.findElement(btnLogin);
+        return Constant.WEBDRIVER.findElement(btnLogin);
     }
 
     public WebElement getLblErrorMessage() {
-        return  Constant.WEBDRIVER.findElement(lblErrorMessage);
+        return Constant.WEBDRIVER.findElement(lblErrorMessage);
     }
 
     public WebElement getLblErrorUsername() {
-        return  Constant.WEBDRIVER.findElement(lblErrorUsername);
+        return Constant.WEBDRIVER.findElement(lblErrorUsername);
     }
 
     public WebElement getLblErrorPassword() {
-        return  Constant.WEBDRIVER.findElement(lblErrorPassword);
+        return Constant.WEBDRIVER.findElement(lblErrorPassword);
     }
 
     public WebElement getLinkRegister() {
-        return  Constant.WEBDRIVER.findElement(linkRegister);
+        return Constant.WEBDRIVER.findElement(linkRegister);
     }
 
     public WebElement getLinkForgotPassword() {
-        return  Constant.WEBDRIVER.findElement(linkForgotPassword);
+        return Constant.WEBDRIVER.findElement(linkForgotPassword);
     }
 
-    public String getLoginErrorMessage(){
+    public String getLoginErrorMessage() {
         return this.getLblErrorMessage().getText();
 
     }
 
-    public String getErrorEnterUsername(){
+    public String getErrorEnterUsername() {
         return this.getLblErrorUsername().getText();
     }
 
-    public String getErrorEnterPassword(){
+    public String getErrorEnterPassword() {
         return this.getLblErrorPassword().getText();
     }
 
-    public HomePage loginSuccessfully(String username, String password){
+    public void HomePage(String username, String password) {
         this.getTxtEmail().sendKeys("asas4@gmail.com");
         this.getTxtPassword().sendKeys("viet123456");
         this.getBtnLogin().click();
-
-        return new HomePage();
     }
 
-    public LoginPage loginUnSuccessfully(String username, String password){
+    public void LoginPage(String username, String password) {
         this.getTxtEmail().sendKeys("asas4@gmail.com");
         this.getTxtPassword().sendKeys("viet1234567");
         this.getBtnLogin().click();
-
-        return new LoginPage();
     }
 
-    public LoginPage usernameInvalid(String username){
+    public LoginPage usernameInvalid(String username) {
         this.getTxtEmail().sendKeys("");
         this.getTxtPassword().sendKeys("viet123456");
         this.getBtnLogin().click();
@@ -81,7 +77,7 @@ public class LoginPage extends Genneral{
         return new LoginPage();
     }
 
-    public LoginPage passwordInvalid(String password){
+    public LoginPage passwordInvalid(String password) {
         this.getTxtEmail().sendKeys("asas5@gmai.com");
         this.getTxtPassword().sendKeys("");
         this.getBtnLogin().click();
