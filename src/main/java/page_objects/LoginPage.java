@@ -13,7 +13,7 @@ public class LoginPage extends Genneral {
     public final By lblErrorPassword = By.cssSelector("[for$='password']");
     public final By linkRegister = By.cssSelector("a[href$='Register.cshtml']");
     public final By linkForgotPassword = By.cssSelector("a[href$='ForgotPassword.cshtml']");
-    public  By tabLogout;
+    public By tabLogout;
 
     public WebElement getTxtEmail() {
         return Constant.WEBDRIVER.findElement(txtEmail);
@@ -65,16 +65,20 @@ public class LoginPage extends Genneral {
         return this.getLblErrorPassword().getText();
     }
 
-    public String login(String username, String password) throws InterruptedException {
+    public void login(String username, String password) {
+        this.getTxtEmail().clear();
         this.getTxtEmail().sendKeys(username);
         this.getTxtPassword().sendKeys(password);
         this.getBtnLogin().click();
-        if (this.getWelcomeMessage()!="Welcome guest!") {
+        if (this.getWelcomeMessage().equals("Welcome guest!")) {
+            this.getTxtEmail().clear();
+            this.getTxtEmail().sendKeys(username);
+            this.getTxtPassword().sendKeys(password);
+            this.getBtnLogin().click();
+        } else {
             this.getTabLogout().click();
-            return "valid user";
+            this.getTabLogin().click();
         }
-        goToLoginPage();
-        return "invalid user";
     }
 }
 

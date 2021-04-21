@@ -1,14 +1,26 @@
 [
-    {
-      "username":"asas4@gmail.com",
-      "password":"viet123456"
-    },
-    {
-      "username":"asas5@gmail.com",
-      "password":"viet123456"
-    },
-    {
-      "username":"asas6@gmai.com",
-      "password":"viet123456"
+  {
+    "users": {
+      "username": "asas@gmail.com",
+      "password": "viuet123456"
     }
+  },
+  {
+    "users": {
+      "username": "asas5@gmail.com",
+      "password": "viet123456"
+    }
+  },
+  {
+    "users": {
+      "username": "asas6@gmail.com",
+      "password": "viet123456"
+    }
+  },
+  {
+    "users": {
+      "username": "asas3@gmail.com",
+      "password": "viet123456"
+    }
+  }
 ]
