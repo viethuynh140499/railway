@@ -39,20 +39,21 @@ public class LoginTest extends BaseTest {
             FileReader reader = new FileReader("src/test/resources/datatest.json");
             //Read JSON file
             Object obj = jsonParser.parse(reader);
-            JSONArray usersList = (JSONArray) obj;
+            JSONObject login = (JSONObject) obj;
+            JSONArray usersList = (JSONArray) login.get("login");
             System.out.println("Users List-> " + usersList); //This prints the entire json file
             for (int i = 0; i < usersList.size(); i++) {
-                JSONObject users = (JSONObject) usersList.get(i);
+                JSONObject user = (JSONObject) usersList.get(i);
                 /*System.out.println("Users -> " + users);//This prints every block - one json object*/
-                JSONObject user = (JSONObject) users.get("users");
+//                JSONObject user = (JSONObject) users.get("users");
                 System.out.println("User -> " + user); //This prints each data in the block
                 String username = (String) user.get("username");
                 String password = (String) user.get("password");
                 loginPage.login(username, password);
-                if (!loginPage.getWelcomeMessage().equals("Welcome guest!")){
+                if (!loginPage.getWelcomeMessage().equals("Welcome guest!")) {
                     String actualMsg = homePage.getWelcomeMessage();
                     String expectedMsg = "Welcome " + user.get("username");
-                    System.out.println("Actual Message:"+actualMsg);
+                    System.out.println("Actual Message:" + actualMsg);
                     System.out.println("Expected Message:"+expectedMsg);
                     Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
                     loginPage.logout();
