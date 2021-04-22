@@ -8,7 +8,7 @@ public class LoginPage extends Genneral {
     public final By txtEmail = By.cssSelector("[id$=username]");
     public final By txtPassword = By.cssSelector("[id$=password]");
     public final By btnLogin = By.cssSelector("[title='Login']");
-    public final By lblErrorMessage = By.cssSelector("[class*='error']");
+    public final By lblErrorMessage = By.cssSelector("p[class*='error']");
     public final By lblErrorUsername = By.cssSelector("[for$='username']");
     public final By lblErrorPassword = By.cssSelector("[for$='password']");
     public final By linkRegister = By.cssSelector("a[href$='Register.cshtml']");
@@ -70,15 +70,17 @@ public class LoginPage extends Genneral {
         this.getTxtEmail().sendKeys(username);
         this.getTxtPassword().sendKeys(password);
         this.getBtnLogin().click();
-        if (this.getWelcomeMessage().equals("Welcome guest!")) {
-            this.getTxtEmail().clear();
-            this.getTxtEmail().sendKeys(username);
-            this.getTxtPassword().sendKeys(password);
-            this.getBtnLogin().click();
-        } else {
-            this.getTabLogout().click();
-            this.getTabLogin().click();
-        }
+//        if (this.getWelcomeMessage().equals("Welcome guest!")) {
+//            this.getTxtEmail().clear();
+//            this.getTxtEmail().sendKeys(username);
+//            this.getTxtPassword().sendKeys(password);
+//            this.getBtnLogin().click();
+//        }
+    }
+
+    public void logout() {
+        this.getTabLogout().click();
+        this.getTabLogin().click();
     }
 }
 
