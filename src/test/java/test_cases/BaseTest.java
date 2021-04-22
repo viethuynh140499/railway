@@ -13,27 +13,25 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    JavascriptExecutor js;
-    ChromeOptions chromeOptions;
+  JavascriptExecutor js;
+  ChromeOptions chromeOptions;
 
-    @BeforeMethod
-    public void beforeTest() throws IOException {
-        System.setProperty("webdriver.chrome.driver", Helper.getProjectPath() + "/src/main/resources/Executables/chromedriver.exe");
+  @BeforeMethod
+  public void beforeTest() throws IOException {
+    System.setProperty("webdriver.chrome.driver", Helper.getProjectPath() + "/src/main/resources/Executables/chromedriver.exe");
 //        System.setProperty("webdriver.chrome.driver", Helper.getProjectPath() + "/src/main/resources/Executables/chromedriver");
-        chromeOptions = new ChromeOptions();
-        chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        Constant.WEBDRIVER = new ChromeDriver(chromeOptions);
-        Constant.WEBDRIVER.manage().window().maximize();
-        Constant.WEBDRIVER.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        js = (JavascriptExecutor) Constant.WEBDRIVER;
+    chromeOptions = new ChromeOptions();
+    chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+    Constant.WEBDRIVER = new ChromeDriver(chromeOptions);
+    Constant.WEBDRIVER.manage().window().maximize();
+    Constant.WEBDRIVER.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    js = (JavascriptExecutor) Constant.WEBDRIVER;
 
-    }
+  }
 
-    @AfterMethod
-    public void afterTest() throws IOException {
-        System.out.println("Post-condition");
-        Constant.WEBDRIVER.quit();
-    }
-
-
+  @AfterMethod
+  public void afterTest() throws IOException {
+    System.out.println("Post-condition");
+    Constant.WEBDRIVER.quit();
+  }
 }
