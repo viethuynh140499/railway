@@ -18,10 +18,10 @@ public class BaseTest {
 
     @BeforeMethod
     public void beforeTest() throws IOException {
-        //System.setProperty("webdriver.chrome.driver", Helper.getProjectPath() + "/src/main/resources/Executables/chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", Helper.getProjectPath() + "/src/main/resources/Executables/chromedriver");
+        System.setProperty("webdriver.chrome.driver", Helper.getProjectPath() + "/src/main/resources/Executables/chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", Helper.getProjectPath() + "/src/main/resources/Executables/chromedriver");
         chromeOptions = new ChromeOptions();
-        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
         Constant.WEBDRIVER = new ChromeDriver(chromeOptions);
         Constant.WEBDRIVER.manage().window().maximize();
         Constant.WEBDRIVER.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

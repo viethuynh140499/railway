@@ -3,6 +3,7 @@ package test_cases;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import page_objects.HomePage;
 import page_objects.LoginPage;
@@ -17,18 +18,18 @@ public class LoginTest extends BaseTest {
     @Test
     public void TC01() throws InterruptedException, IOException, ParseException {
         System.out.println("TC01 - User can login to Railway with valid username and password");
-        uservalid();
+        checkuser();
     }
 
     @Test
     public void TC02() throws InterruptedException, ParseException, IOException {
-        System.out.println("TC01 - User can login to Railway with Invalid username and password");
-        uservalid();
+        System.out.println("TC02 - User can login to Railway with Invalid username and password");
+        checkuser();
     }
 
 
     @SuppressWarnings("unchecked")
-    public void uservalid() throws InterruptedException, IOException, ParseException {
+    public void checkuser() throws InterruptedException, IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         js.executeScript("window.scrollBy(0,1000)");
         try {
@@ -48,9 +49,18 @@ public class LoginTest extends BaseTest {
                 String username = (String) user.get("username");
                 String password = (String) user.get("password");
                 loginPage.login(username, password);
-                /*String actualMsg = homePage.getWelcomeMessage();
-                String expectedMsg = "Welcome " + user.get("username");
-                Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");*/
+                if (!loginPage.getWelcomeMessage().equals("Welcome guest!")){
+                    String actualMsg = homePage.getWelcomeMessage();
+                    String expectedMsg = "Welcome " + user.get("username");
+                    System.out.println("Actual Message:"+actualMsg);
+                    System.out.println("Expected Message:"+expectedMsg);
+                    Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
+                    loginPage.logout();
+                }else{
+                    String actualMsg = loginPage.getLoginErrorMessage();
+                    String expectedMsg = (String) user.get("invalid");
+                    Assert.assertEquals(actualMsg,expectedMsg, "Error message is not displayed as expected");
+                }
             }
         } catch (FileNotFoundException | org.json.simple.parser.ParseException e) {
             e.printStackTrace();
