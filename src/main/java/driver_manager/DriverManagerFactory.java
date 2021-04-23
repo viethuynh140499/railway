@@ -7,13 +7,13 @@ public class DriverManagerFactory {
 
     switch (type) {
       case CHROME:
-        Constant.DRIVERMANAGER = new ChromeDriverManager();
+        Constant.DRIVER_MANAGER = new ChromeDriverManager();
         break;
 //      default:
 //        Constant.DRIVERMANAGER = new ChromeDriverManager();
 //        break;
     }
-    return Constant.DRIVERMANAGER;
+    return Constant.DRIVER_MANAGER;
   }
 }
 

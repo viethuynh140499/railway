@@ -1,21 +1,5 @@
-package test_cases;
+package test_cases.draft;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import common.constant.Constant;
-import common.helper.Helper;
-import driver_manager.DriverManager;
-import driver_manager.DriverManagerFactory;
-import driver_manager.DriverType;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.*;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -23,12 +7,29 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import common.constant.Constant;
+import common.helper.Helper;
+import driver_manager.DriverManagerFactory;
+import driver_manager.DriverType;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BaseTest2 {
-  public ExtentHtmlReporter htmlReporter;
-  public ExtentReports extent;
-  public ExtentTest logger;
-  JavascriptExecutor js;
+  private ExtentHtmlReporter htmlReporter;
+  private ExtentReports extent;
+  private ExtentTest logger;
 
   @BeforeTest
   public void startReport() {
@@ -60,8 +61,8 @@ public class BaseTest2 {
 
   @BeforeMethod
   public void setup() {
-    Constant.DRIVERMANAGER = DriverManagerFactory.getDriverManager(DriverType.CHROME);
-    Constant.WEBDRIVER = Constant.DRIVERMANAGER.getWebDriver();
+    Constant.DRIVER_MANAGER = DriverManagerFactory.getDriverManager(DriverType.CHROME);
+    Constant.WEB_DRIVER = Constant.DRIVER_MANAGER.getWebDriver();
   }
 
   @AfterMethod
@@ -73,7 +74,7 @@ public class BaseTest2 {
       //To capture screenshot path and store the path of the screenshot in the string "screenshotPath"
       //We do pass the path captured by this method in to the extent reports using "logger.addScreenCapture" method.
       //String Scrnshot=TakeScreenshot.captuerScreenshot(driver,"TestCaseFailed");
-      String screenshotPath = getScreenShot(Constant.WEBDRIVER, result.getName());
+      String screenshotPath = getScreenShot(Constant.WEB_DRIVER, result.getName());
       //To add it in the extent report
       logger.fail("Test Case Failed Snapshot is below " + logger.addScreenCaptureFromPath(screenshotPath));
     } else if (result.getStatus() == ITestResult.SKIP) {
@@ -81,7 +82,6 @@ public class BaseTest2 {
     } else if (result.getStatus() == ITestResult.SUCCESS) {
       logger.log(Status.PASS, MarkupHelper.createLabel(result.getName() + " Test Case PASSED", ExtentColor.GREEN));
     }
-    Constant.WEBDRIVER.quit();
   }
 
   @AfterTest
