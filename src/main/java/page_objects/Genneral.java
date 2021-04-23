@@ -1,77 +1,81 @@
 package page_objects;
 
 import common.constant.Constant;
+import common.helper.element.Label;
+import common.helper.element.Link;
+import common.helper.element.Tab;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 
 public class Genneral {
-    public final By tabLogin = By.cssSelector("a[href$='Login.cshtml'] span");
-    public final By tabRegister = By.cssSelector("a[href$='Register.cshtml'] span");
-    public final By tabFAQ = By.cssSelector("a[href$='FAQ.cshtml'] span");
-    public final By tabTimetable = By.cssSelector("a[href$='TrainTimeListPage.cshtml'] span");
-    public final By tabContact = By.cssSelector("a[href$='Contact.cshtml'] span");
-    public final By tabBookTicket = By.cssSelector("a[href$='BookTicketPage.cshtml'] span");
-    public final By tabTicketPrice = By.cssSelector("a[href$='TrainPriceListPage.cshtml'] span");
-    public final By tabHome = By.cssSelector(".selected a span");
-    public final By linkRegister = By.cssSelector("#content a[href$='Register.cshtml'] ");
-    public final By lblWelcomeMessage = By.cssSelector(".account strong");
+    private final Tab tabLogin = new Tab(By.cssSelector("a[href$='Login.cshtml'] span"));
+    private final Tab tabRegister = new Tab(By.cssSelector("a[href$='Register.cshtml'] span"));
+    private final Tab tabFAQ = new Tab(By.cssSelector("a[href$='FAQ.cshtml'] span"));
+    private final Tab tabTimetable = new Tab(By.cssSelector("a[href$='TrainTimeListPage.cshtml'] span"));
+    private final Tab tabContact = new Tab(By.cssSelector("a[href$='Contact.cshtml'] span"));
+    private final Tab tabBookTicket = new Tab(By.cssSelector("a[href$='BookTicketPage.cshtml'] span"));
+    private final Tab tabTicketPrice = new Tab(By.cssSelector("a[href$='TrainPriceListPage.cshtml'] span"));
+    private final Tab tabHome = new Tab(By.cssSelector(".selected a span"));
+    private final Link linkRegister = new Link(By.cssSelector("#content a[href$='Register.cshtml']"));
+    public final Label lblWelcomeMessage = new Label(By.cssSelector(".account strong"));
+    public final Tab tabLogout = new Tab(By.cssSelector("a[href*=Logout]"));
 
-
-
-    public WebElement getTabLogin() {
-        return Constant.WEBDRIVER.findElement(tabLogin);
+    public void getTabLogin() {
+        this.tabLogin.click();
     }
 
-    public WebElement getTabRegister() {
-        return Constant.WEBDRIVER.findElement(tabRegister);
+    public void getTabRegister() {
+        this.tabRegister.click();
     }
 
-    public WebElement getTabFAQ() {
-        return Constant.WEBDRIVER.findElement(tabFAQ);
+    public void getTabFAQ() {
+        this.tabFAQ.click();
     }
 
-    public WebElement getTabTimetable() {
-        return Constant.WEBDRIVER.findElement(tabTimetable);
+    public void getTabTimetable() {
+        this.tabTimetable.click();
     }
 
-    public WebElement getTabContact() {
-        return Constant.WEBDRIVER.findElement(tabContact);
+    public void getTabContact() {
+        this.tabContact.click();
     }
 
-    public WebElement getTabBookTicket() {
-        return Constant.WEBDRIVER.findElement(tabBookTicket);
+    public void getTabBookTicket() {
+        this.tabBookTicket.click();
     }
 
-    public WebElement getTabTicketPrice() {
-        return Constant.WEBDRIVER.findElement(tabTicketPrice);
+    public void getTabTicketPrice() {
+        this.tabTicketPrice.click();
     }
 
-    public WebElement getTabHome() {
-        return Constant.WEBDRIVER.findElement(tabHome);
+    public void getTabHome() {
+        this.tabHome.click();
     }
 
-    public WebElement getLinkRegister() {
-        return Constant.WEBDRIVER.findElement(linkRegister);
+    public void getLinkRegister() {
+        this.linkRegister.click();
     }
 
-    public WebElement getLblWelcomeMessage() {
-        return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
+    public void getTabLogout(){
+        this.tabLogout.click();
     }
-
 
 
     public String getWelcomeMessage() {
-        return this.getLblWelcomeMessage().getText();
+       return this.lblWelcomeMessage.getText();
     }
 
     public void goToBookTicketPage() {
-        this.getTabBookTicket().click();
+        getTabBookTicket();
     }
 
-    public LoginPage goToLoginPage() {
-        this.getTabLogin().click();
-        return new LoginPage();
+    public void goToLoginPage() {
+        getTabLogin();
     }
+
+    public void logout() {
+        this.getTabLogout();
+        this.getTabLogin();
+    }
+
 }

@@ -1,75 +1,63 @@
 package page_objects;
 
 import common.constant.Constant;
+import common.helper.Helper;
+import common.helper.element.Button;
+import common.helper.element.Label;
+import common.helper.element.Link;
+import common.helper.element.TextBox;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends Genneral {
-    public final By txtEmail = By.cssSelector("[id$=username]");
-    public final By txtPassword = By.cssSelector("[id$=password]");
-    public final By btnLogin = By.cssSelector("[title='Login']");
-    public final By lblErrorMessage = By.cssSelector("p[class*='error']");
-    public final By lblErrorUsername = By.cssSelector("[for$='username']");
-    public final By lblErrorPassword = By.cssSelector("[for$='password']");
-    public final By linkRegister = By.cssSelector("a[href$='Register.cshtml']");
-    public final By linkForgotPassword = By.cssSelector("a[href$='ForgotPassword.cshtml']");
+
+
+    public final TextBox txtEmail = new TextBox(By.cssSelector("[id$=username]"));
+    public final TextBox txtPassword = new TextBox(By.cssSelector("[id$=password]"));
+    public final Button btnLogin = new Button(By.cssSelector("[title='Login']"));
+    public final Label lblErrorMessage = new Label(By.cssSelector("p[class*='error']"));
+    public final Label lblErrorUsername = new Label(By.cssSelector("[for$='username']"));
+    public final Label lblErrorPassword = new Label(By.cssSelector("[for$='password']"));
+    public final Link linkRegister = new Link(By.cssSelector("a[href$='Register.cshtml']"));
+    public final Link linkForgotPassword = new Link(By.cssSelector("a[href$='ForgotPassword.cshtml']"));
     public By tabLogout;
 
-    public WebElement getTxtEmail() {
-        return Constant.WEBDRIVER.findElement(txtEmail);
+
+
+    public String getLblErrorMessage() {
+        return this.lblErrorMessage.getText();
     }
 
-    public WebElement getTxtPassword() {
-        return Constant.WEBDRIVER.findElement(txtPassword);
+    public void getLblErrorUsername() {
+        this.lblErrorUsername.getText();
     }
 
-    public WebElement getBtnLogin() {
-        return Constant.WEBDRIVER.findElement(btnLogin);
+    public void getLblErrorPassword() {
+        this.lblErrorPassword.getText();
     }
 
-    public WebElement getLblErrorMessage() {
-        return Constant.WEBDRIVER.findElement(lblErrorMessage);
+    public void getLinkRegister() {
+       this.linkRegister.click();
     }
 
-    public WebElement getLblErrorUsername() {
-        return Constant.WEBDRIVER.findElement(lblErrorUsername);
+    public void getLinkForgotPassword() {
+        this.linkForgotPassword.click();
     }
 
-    public WebElement getLblErrorPassword() {
-        return Constant.WEBDRIVER.findElement(lblErrorPassword);
+
+    public void getErrorEnterUsername() {
+         this.getLblErrorUsername();
     }
 
-    public WebElement getLinkRegister() {
-        return Constant.WEBDRIVER.findElement(linkRegister);
-    }
-
-    public WebElement getLinkForgotPassword() {
-        return Constant.WEBDRIVER.findElement(linkForgotPassword);
-    }
-
-    public WebElement getTabLogout() {
-        tabLogout = By.cssSelector("a[href*=Logout]");
-        return Constant.WEBDRIVER.findElement(tabLogout);
-    }
-
-    public String getLoginErrorMessage() {
-        return this.getLblErrorMessage().getText();
-
-    }
-
-    public String getErrorEnterUsername() {
-        return this.getLblErrorUsername().getText();
-    }
-
-    public String getErrorEnterPassword() {
-        return this.getLblErrorPassword().getText();
+    public void getErrorEnterPassword() {
+         this.getLblErrorPassword();
     }
 
     public void login(String username, String password) {
-        this.getTxtEmail().clear();
-        this.getTxtEmail().sendKeys(username);
-        this.getTxtPassword().sendKeys(password);
-        this.getBtnLogin().click();
+        this.txtEmail.enterText(username);
+        this.txtPassword.enterText(password);
+        Helper.scrollToView(this.btnLogin.findElement());
+        this.btnLogin.click();
 //        if (this.getWelcomeMessage().equals("Welcome guest!")) {
 //            this.getTxtEmail().clear();
 //            this.getTxtEmail().sendKeys(username);
@@ -78,9 +66,6 @@ public class LoginPage extends Genneral {
 //        }
     }
 
-    public void logout() {
-        this.getTabLogout().click();
-        this.getTabLogin().click();
-    }
+
 }
 
