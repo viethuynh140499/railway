@@ -3,6 +3,8 @@ package test_cases;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page_objects.HomePage;
@@ -13,7 +15,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 
-public class LoginTest extends BaseTest {
+public class LoginTest extends BaseTest2 {
+
+
 
     @Test
     public void TC01() throws InterruptedException, IOException, ParseException {

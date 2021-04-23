@@ -2,6 +2,9 @@ package test_cases;
 
 import common.constant.Constant;
 import common.helper.Helper;
+import driver_manager.DriverManager;
+import driver_manager.DriverManagerFactory;
+import driver_manager.DriverType;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,11 +21,8 @@ public class BaseTest {
 
   @BeforeMethod
   public void beforeTest() throws IOException {
-    System.setProperty("webdriver.chrome.driver", Helper.getProjectPath() + "/src/main/resources/Executables/chromedriver.exe");
-//        System.setProperty("webdriver.chrome.driver", Helper.getProjectPath() + "/src/main/resources/Executables/chromedriver");
-    chromeOptions = new ChromeOptions();
-    chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-    Constant.WEBDRIVER = new ChromeDriver(chromeOptions);
+    Constant.DRIVERMANAGER = DriverManagerFactory.getDriverManager(DriverType.CHROME);
+    Constant.WEBDRIVER = Constant.DRIVERMANAGER.getWebDriver();
     Constant.WEBDRIVER.manage().window().maximize();
     Constant.WEBDRIVER.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     js = (JavascriptExecutor) Constant.WEBDRIVER;

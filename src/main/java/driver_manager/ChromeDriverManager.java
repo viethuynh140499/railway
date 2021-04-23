@@ -12,8 +12,8 @@ public class ChromeDriverManager extends DriverManager {
 
     @Override
     protected void createWebDriver() {
-        WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
+        WebDriverManager.chromedriver().setup();
         Constant.WEBDRIVER = new ChromeDriver(options);
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);
     }

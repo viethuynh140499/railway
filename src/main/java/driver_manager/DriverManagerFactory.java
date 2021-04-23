@@ -1,18 +1,19 @@
 package driver_manager;
 
+import common.constant.Constant;
+
 public class DriverManagerFactory {
   public static DriverManager getDriverManager(DriverType type) {
-    DriverManager driverManager;
+
     switch (type) {
       case CHROME:
-        driverManager = new ChromeDriverManager();
+        Constant.DRIVERMANAGER = new ChromeDriverManager();
         break;
-
-      default:
-        driverManager = new ChromeDriverManager();
-        break;
+//      default:
+//        Constant.DRIVERMANAGER = new ChromeDriverManager();
+//        break;
     }
-    return driverManager;
+    return Constant.DRIVERMANAGER;
   }
 }
 
