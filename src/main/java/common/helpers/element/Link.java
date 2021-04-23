@@ -1,0 +1,9 @@
+package common.helpers.element;
+
+import org.openqa.selenium.By;
+
+public class Link extends BaseElement{
+  public Link(By locator) {
+    super(locator);
+  }
+}
