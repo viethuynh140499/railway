@@ -1,13 +1,11 @@
 package page_objects;
 
-import common.constant.Constant;
-import common.helper.element.Label;
-import common.helper.element.Link;
-import common.helper.element.Tab;
+import common.helpers.element.Label;
+import common.helpers.element.Link;
+import common.helpers.element.Tab;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-public class Genneral {
+public class General {
     private final Tab tabLogin = new Tab(By.cssSelector("a[href$='Login.cshtml'] span"));
     private final Tab tabRegister = new Tab(By.cssSelector("a[href$='Register.cshtml'] span"));
     private final Tab tabFAQ = new Tab(By.cssSelector("a[href$='FAQ.cshtml'] span"));
@@ -20,43 +18,43 @@ public class Genneral {
     public final Label lblWelcomeMessage = new Label(By.cssSelector(".account strong"));
     public final Tab tabLogout = new Tab(By.cssSelector("a[href*=Logout]"));
 
-    public void getTabLogin() {
+    public void clickTabLogin() {
         this.tabLogin.click();
     }
 
-    public void getTabRegister() {
+    public void clickTabRegister() {
         this.tabRegister.click();
     }
 
-    public void getTabFAQ() {
+    public void clickTabFAQ() {
         this.tabFAQ.click();
     }
 
-    public void getTabTimetable() {
+    public void clickTabTimetable() {
         this.tabTimetable.click();
     }
 
-    public void getTabContact() {
+    public void clickTabContact() {
         this.tabContact.click();
     }
 
-    public void getTabBookTicket() {
+    public void clickTabBookTicket() {
         this.tabBookTicket.click();
     }
 
-    public void getTabTicketPrice() {
+    public void clickTabTicketPrice() {
         this.tabTicketPrice.click();
     }
 
-    public void getTabHome() {
+    public void clickTabHome() {
         this.tabHome.click();
     }
 
-    public void getLinkRegister() {
+    public void clickLinkRegister() {
         this.linkRegister.click();
     }
 
-    public void getTabLogout(){
+    public void clickTabLogout(){
         this.tabLogout.click();
     }
 
@@ -66,16 +64,20 @@ public class Genneral {
     }
 
     public void goToBookTicketPage() {
-        getTabBookTicket();
+        clickTabBookTicket();
     }
 
     public void goToLoginPage() {
-        getTabLogin();
+        clickTabLogin();
+    }
+
+    public void goToRegisterPage(){
+        clickTabRegister();
     }
 
     public void logout() {
-        this.getTabLogout();
-        this.getTabLogin();
+        this.clickTabLogout();
+        this.clickTabLogin();
     }
 
 }

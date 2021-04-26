@@ -1,29 +1,35 @@
 package test_cases;
 
 import common.constant.Constant;
-import driver_manager.DriverManagerFactory;
-import driver_manager.DriverType;
-import org.testng.annotations.AfterMethod;
+import common.helpers.BrowserHelper.BrowserHelper;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import page_objects.HomePage;
+import page_objects.LoginPage;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
+  private HomePage homePage = new HomePage();
+
   @BeforeTest
-  public void beforeTest() throws IOException {
-    Constant.DRIVER_MANAGER = DriverManagerFactory.getDriverManager(DriverType.CHROME);
-    Constant.WEB_DRIVER = Constant.DRIVER_MANAGER.getWebDriver();
-    Constant.WEB_DRIVER.manage().window().maximize();
-    Constant.WEB_DRIVER.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+  public void setup(){
+    BrowserHelper.startBrowser(BrowserHelper.DriverType.CHROME);
+    BrowserHelper.navigateToUrl(Constant.RAILWAY_URL);
+
+  }
+
+  @BeforeMethod
+  public void beforeMethod(){
+    homePage.goToLoginPage();
   }
 
   @AfterTest
-  public void afterTest() throws IOException {
+  public void afterTest() {
     System.out.println("Post-condition");
-    Constant.WEB_DRIVER.quit();
+    Constant.WEBDRIVER.quit();
   }
 }

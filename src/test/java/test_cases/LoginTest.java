@@ -1,75 +1,68 @@
 package test_cases;
 
-import model.CheckUser;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.chrome.ChromeOptions;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import common.constant.Constant;
+import common.helpers.DataHelper;
+import common.helpers.DataProviderHelper;
+import model.User;
+import org.json.simple.parser.ParseException;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import page_objects.HomePage;
 import page_objects.LoginPage;
-import test_cases.draft.BaseTest2;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
+import java.util.List;
 
 public class LoginTest extends BaseTest {
-    CheckUser checkUser = new CheckUser();
-    @Test
-    public void TC01() throws InterruptedException, IOException, ParseException {
-        System.out.println("TC01 - User can login to Railway with valid username and password");
 
-        checkUser.checkuser();
+    private HomePage homePage = new HomePage();
+    private LoginPage loginPage = new LoginPage();
+    public static ObjectMapper objectMapper;
+
+    @Test(dataProvider = "valid-user", dataProviderClass = DataProviderHelper.class, description = "login successfully with valid email and password")
+    public void TC01(User user) {
+
+        loginPage.login(user.getUsername(), user.getPassword());
+
+        String actualResult = homePage.getWelcomeMessage();
+        String expectedResult = user.getWelcomeMessage();
+
+        homePage.logout();
+
+        Assert.assertEquals(actualResult, expectedResult, "Welcome message not match");
     }
 
-    @Test
-    public void TC02() throws InterruptedException, ParseException, IOException {
-        System.out.println("TC02 - User can login to Railway with Invalid username and password");
-        checkUser.checkuser();
+
+    @Test(dataProvider = "invalid-user", dataProviderClass = DataProviderHelper.class, description = "login unsuccessfully with valid email and password")
+    public void TC02(User user) {
+
+        loginPage.login(user.getUsername(), user.getPassword());
+
+        String actualResult = loginPage.getLblErrorMessage();
+        String expectedResult = user.getWelcomeMessage();
+
+        homePage.logout();
+
+        Assert.assertEquals(actualResult, expectedResult, "Welcome message not match");
     }
 
 
-//    @SuppressWarnings("unchecked")
-//    public void checkuser() throws InterruptedException, IOException, ParseException {
-//        JSONParser jsonParser = new JSONParser();
-//        try {
-//            HomePage homePage = new HomePage();
-//            homePage.open();
-//            LoginPage loginPage = new LoginPage();
-//            homePage.goToLoginPage();
-//            FileReader reader = new FileReader("src/test/resources/datatest.json");
-//            //Read JSON file
-//            Object obj = jsonParser.parse(reader);
-//            JSONObject login = (JSONObject) obj;
-//            JSONArray usersList = (JSONArray) login.get("login");
-//            System.out.println("Users List-> " + usersList); //This prints the entire json file
-//            for (int i = 0; i < usersList.size(); i++) {
-//                JSONObject user = (JSONObject) usersList.get(i);
-//                /*System.out.println("Users -> " + users);//This prints every block - one json object*/
-////                JSONObject user = (JSONObject) users.get("users");
-//                System.out.println("User -> " + user); //This prints each data in the block
-//                String username = (String) user.get("username");
-//                String password = (String) user.get("password");
-//                loginPage.login(username, password);
-//                if (!loginPage.getWelcomeMessage().equals("Welcome guest!")) {
-//                    String actualMsg = homePage.getWelcomeMessage();
-//                    String expectedMsg = "Welcome " + user.get("username");
-//                    System.out.println("Actual Message:" + actualMsg);
-//                    System.out.println("Expected Message:"+expectedMsg);
-//                    Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
-//                    loginPage.logout();
-//                }else{
-//                    String actualMsg = loginPage.getLblErrorMessage();
-//                    String expectedMsg = (String) user.get("invalid");
-//                    Assert.assertEquals(actualMsg,expectedMsg, "Error message is not displayed as expected");
-//                }
-//            }
-//        } catch (FileNotFoundException | org.json.simple.parser.ParseException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @DataProvider(name = "valid-user")
+    public static Object[] getValidLoginData() throws IOException, ParseException {
+        String json = DataHelper.getJsonData(DataHelper.getProjectPath() + Constant.DATA_PATH + "login_successfully.json").toString();
+        List<User> users = objectMapper.readValue(json, new TypeReference<List<User>>() {
+        });
+        return users.toArray();
+    }
+
+    @DataProvider(name = "invalid-user")
+    public Object[] getInvalidLoginData() throws IOException, ParseException {
+        String json = DataHelper.getJsonData(Constant.DATA_PATH + "login_unsuccessfully.json").toString();
+        List<User> users = objectMapper.readValue(json, new TypeReference<List<User>>() {
+        });
+        return users.toArray();
+    }
 }
