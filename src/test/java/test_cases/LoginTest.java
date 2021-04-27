@@ -36,7 +36,7 @@ public class LoginTest extends BaseTest {
     }
 
 
-    @Test(dataProvider = "InvalidUser", description = "login unsuccessfully with valid email and password")
+    @Test(dataProvider = "invalidUser", description = "login unsuccessfully with valid email and password")
     public void TC02(User user) {
         homePage.clickTabLogin();
         loginPage.login(user.getUsername(), user.getPassword());
@@ -49,12 +49,12 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "Welcome message not match");
     }
 
-    @DataProvider(name = "InvalidUser")
+    @DataProvider(name = "invalidUser")
     public static Object[] getValidLoginData() throws IOException, ParseException {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("src/test/resources/data/login_successfully.json");
 //        String json = DataHelper.getJsonData(DataHelper.getProjectPath() + Constant.DATA_PATH + "login_successfully.json").toString();
-        String json = DataHelper.getJsonData(file.getAbsolutePath()).toString();
+        String json = DataHelper.getJsonData("src/test/resources/data/login_successfully.json").toString();
 //        String json = file.getAbsoluteFile().toString();
         List<User> users = objectMapper.readValue(json, new TypeReference<List<User>>() {
         });

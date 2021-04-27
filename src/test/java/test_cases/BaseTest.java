@@ -16,11 +16,6 @@ public class BaseTest {
   @BeforeTest
   public void setup(){
     BrowserHelper.startBrowser(BrowserHelper.DriverType.CHROME);
-//    BrowserHelper.navigateToUrl(Constant.RAILWAY_URL);
-  }
-
-  @BeforeMethod
-  public void beforemethod() {
     BrowserHelper.navigateToUrl(Constant.RAILWAY_URL);
   }
 

@@ -14,6 +14,12 @@ public class RegisterPage {
 //  private final Link linkForgotPassword = new Link(By.cssSelector("a[href$='Confirm.cshtml']"));
   private final Label lblErrorMessage = new Label(By.cssSelector("#content .message"));
 
+  private final Label lblSuccessfully = new Label(By.cssSelector("#content p"));
+
+  public String  getTxtSuccessfully(){
+    return this.lblSuccessfully.getText();
+  }
+
 
   public String getErrorMessage(){return this.lblErrorMessage.getText();}
   /***
@@ -29,8 +35,6 @@ public class RegisterPage {
     this.txtPassword.enterText(password);
     this.txtConfirmPassword.enterText(confirmPassword);
     this.txtPid.enterText(pid);
-//    ElementHelper.scrollToView(this.btnRegister.findElement());
     this.btnRegister.submit();
-
   }
 }
