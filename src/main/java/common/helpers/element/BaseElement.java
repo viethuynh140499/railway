@@ -1,8 +1,9 @@
 package common.helpers.element;
 
-import common.constant.Constant;
+import common.helpers.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 
 import java.util.List;
 
@@ -12,18 +13,20 @@ public class BaseElement {
   public BaseElement(By locator) {
     this.locator = locator;
   }
-
   public WebElement findElement() {
-    return Constant.WEBDRIVER.findElement(locator);
+    return BrowserHelper.getDriver().findElement(locator);
   }
 
-  public List<WebElement> findElements() {
-    return Constant.WEBDRIVER.findElements(locator);
+  public List<WebElement> findElements(){
+    return BrowserHelper.getDriver().findElements(locator);
   }
-
 
   public void click() {
     findElement().click();
+  }
+
+  public void submit() {
+    findElement().submit();
   }
 
   public String getText() {

@@ -1,31 +1,35 @@
 package test_cases;
 
-import common.helpers.DataProviderHelper;
-import common.helpers.FakerHelper;
-import model.User;
+import common.helpers.data.FakerDataHelper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page_objects.HomePage;
 import page_objects.RegisterPage;
-import page_objects.SuccessfullyRegister;
+import page_objects.SuccessfullyRegisterPage;
 
 public class RegisterTest extends BaseTest {
   HomePage homePage = new HomePage();
-  SuccessfullyRegister successfullyRegister = new SuccessfullyRegister();
+  RegisterPage registerPage = new RegisterPage();
+  SuccessfullyRegisterPage successfullyRegister = new SuccessfullyRegisterPage();
 
 
-  @Test(dataProvider = "valid-user", dataProviderClass = DataProviderHelper.class, description = "login successfully with valid email and password")
-  public void TC01(User user) {
-
-    String username = FakerHelper.randomEmail();
-    String password = FakerHelper.randomPassword();
-    String pid = FakerHelper.randomPID();
-
+  @Test(description = "User created an account successfully  with correct information")
+  public void TC01() {
+    String username = FakerDataHelper.randomEmailValid();
+    String password = FakerDataHelper.randomPasswordValid();
+    String pid = FakerDataHelper.randomPIDValid();
     homePage.goToRegisterPage();
-    RegisterPage registerPage = new RegisterPage();
     registerPage.register(username,password, password, pid );
-
     Assert.assertEquals(successfullyRegister.getTxtSuccessfully(), "Registration Confirmed! You can now log in to the site.");
   }
 
+  @Test(description = "User creates an account unsuccessfully with incorrect information")
+  public void TC02(){
+    String username = FakerDataHelper.randomEmailInvalid();
+    String password = FakerDataHelper.randomPasswordInvalid();
+    String pid = FakerDataHelper.randomPIDInvalid();
+    homePage.goToRegisterPage();
+    registerPage.register(username, password,password,pid);
+    Assert.assertEquals(registerPage.getErrorMessage(),"There're errors in the form. Please correct the errors and try again.");
+  }
 }
