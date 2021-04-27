@@ -1,35 +1,32 @@
 package test_cases;
 
 import common.constant.Constant;
-import common.helpers.BrowserHelper.BrowserHelper;
+import common.helpers.BrowserHelper;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import page_objects.HomePage;
-import page_objects.LoginPage;
-
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
   private HomePage homePage = new HomePage();
+  private WebDriver webDriver;
 
   @BeforeTest
   public void setup(){
     BrowserHelper.startBrowser(BrowserHelper.DriverType.CHROME);
-    BrowserHelper.navigateToUrl(Constant.RAILWAY_URL);
-
+//    BrowserHelper.navigateToUrl(Constant.RAILWAY_URL);
   }
 
   @BeforeMethod
-  public void beforeMethod(){
-    homePage.goToLoginPage();
+  public void beforemethod() {
+    BrowserHelper.navigateToUrl(Constant.RAILWAY_URL);
   }
 
   @AfterTest
   public void afterTest() {
     System.out.println("Post-condition");
-    Constant.WEBDRIVER.quit();
+    BrowserHelper.quitBrowser();
   }
 }

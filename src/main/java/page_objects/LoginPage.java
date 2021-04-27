@@ -1,13 +1,13 @@
 package page_objects;
 
-import common.helpers.ElementHelper;
+import common.helpers.element.ElementHelper;
 import common.helpers.element.Button;
 import common.helpers.element.Label;
 import common.helpers.element.Link;
 import common.helpers.element.TextBox;
 import org.openqa.selenium.By;
 
-public class LoginPage extends General {
+public class LoginPage extends GeneralPage {
 
 
     private final TextBox txtEmail = new TextBox(By.cssSelector("[id$=username]"));
@@ -38,8 +38,7 @@ public class LoginPage extends General {
     public void login(String username, String password) {
         this.txtEmail.enterText(username);
         this.txtPassword.enterText(password);
-        ElementHelper.scrollToView(this.btnLogin.findElement());
-        this.btnLogin.click();
+        this.btnLogin.submit();
     }
 }
 
