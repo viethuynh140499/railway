@@ -4,17 +4,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class SelectDropdown extends BaseElement {
-  public SelectDropdown(By locator) {
+public class DropDown extends BaseElement {
+  public DropDown(By locator) {
     super(locator);
   }
 
-  public void selectDropdowOptionByText(String text) {
+  public void selectDropdownOptionByText(String text) {
     Select dropdown = new Select(findElement());
     dropdown.selectByVisibleText(text);
   }
 
-  public void selectDropdowOptionByIndex(int index) {
+  public void selectDropdownOptionByIndex(int index) {
     Select dropdown = new Select(findElement());
     dropdown.selectByIndex(index);
   }
