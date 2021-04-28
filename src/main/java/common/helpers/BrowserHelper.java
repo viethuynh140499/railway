@@ -1,5 +1,6 @@
 package common.helpers;
 
+import common.Constant;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class BrowserHelper {
 
   public enum DriverType {CHROME, FIREFOX, IE}
+
   private static WebDriver driver;
 
   public static void navigateToUrl(String url) {
@@ -32,7 +34,7 @@ public class BrowserHelper {
         driver = new InternetExplorerDriver();
         break;
     }
-    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Constant.TIME_OUT_IMPLICITLY_WAIT, TimeUnit.SECONDS);
     driver.manage().window().maximize();
   }
 

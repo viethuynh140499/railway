@@ -1,6 +1,8 @@
 package page_objects;
 
-import common.helpers.element.*;
+import common.element.Button;
+import common.element.Label;
+import common.element.TextBox;
 import org.openqa.selenium.By;
 
 public class RegisterPage {
@@ -10,13 +12,11 @@ public class RegisterPage {
   private final TextBox txtPid = new TextBox(By.cssSelector("[id$=pid]"));
 
   private final Button btnRegister = new Button(By.cssSelector("[title='Register']"));
-//  private final Link linkLogin = new Link(By.cssSelector("a[href$='Login.cshtml']"));
-//  private final Link linkForgotPassword = new Link(By.cssSelector("a[href$='Confirm.cshtml']"));
   private final Label lblErrorMessage = new Label(By.cssSelector("#content .message"));
 
   private final Label lblSuccessfully = new Label(By.cssSelector("#content p"));
 
-  public String  getTxtSuccessfully(){
+  public String getSuccessfullyMessage() {
     return this.lblSuccessfully.getText();
   }
 

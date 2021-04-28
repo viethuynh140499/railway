@@ -1,9 +1,8 @@
-package common.helpers.element;
+package common.element;
 
 import common.helpers.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 
 import java.util.List;
 
@@ -13,11 +12,12 @@ public class BaseElement {
   public BaseElement(By locator) {
     this.locator = locator;
   }
+
   public WebElement findElement() {
     return BrowserHelper.getDriver().findElement(locator);
   }
 
-  public List<WebElement> findElements(){
+  public List<WebElement> findElements() {
     return BrowserHelper.getDriver().findElements(locator);
   }
 
@@ -33,15 +33,4 @@ public class BaseElement {
     return findElement().getText();
   }
 
-  public boolean isDisplayed() {
-    return findElement().isDisplayed();
-  }
-
-  public boolean isEnabled() {
-    return findElement().isEnabled();
-  }
-
-  public boolean isSelected() {
-    return findElement().isDisplayed();
-  }
 }

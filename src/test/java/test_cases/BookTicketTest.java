@@ -1,23 +1,42 @@
 package test_cases;
 
-import com.github.javafaker.Faker;
-import common.constant.Constant;
-import common.helpers.data.FakerDataHelper;
+import common.Constant;
+import common.helpers.DataHelper;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import page_objects.BookTicketPage;
 import page_objects.HomePage;
 import page_objects.LoginPage;
 
-public class BookTicketTest extends BaseTest{
+public class BookTicketTest extends BaseTest {
   private HomePage homePage = new HomePage();
   private LoginPage loginPage = new LoginPage();
   private BookTicketPage bookTicketPage = new BookTicketPage();
 
-  @Test(description = "Book ticket successfully with correct information")
-  public void TC01(){
+  @Test(description = "Book can book ticket successfully")
+  public void TC01() {
 
-    homePage.clickTabBookTicket();
-    loginPage.login(Constant.USERNAME,Constant.PASSWORD);
-//    bookTicketPage.bookTicket();
+    String departDate = DataHelper.getRandomDepartDate();
+    String departFrom = "Đà Nẵng";
+    String arriveAt = "Huế";
+    String seatType = "Soft bed";
+    int ticketAmount = 1;
+
+    String bookDate = DataHelper.getDateFromToday(0);
+    String expiredDate = DataHelper.getDateFromToday(2);
+
+    homePage.clickBookTicketTab();
+    loginPage.login(Constant.USERNAME, Constant.PASSWORD);
+    homePage.clickBookTicketTab();
+    bookTicketPage.bookTicket(departDate, departFrom, seatType, ticketAmount, arriveAt);
+
+    String actualResult = bookTicketPage.getSuccessfullyMessage();
+    String expectedResult = "Ticket Booked Successfully!";
+
+    Assert.assertEquals(actualResult, expectedResult, actualResult + " is not matched with " + expectedResult);
+
+    Assert.assertEquals(bookTicketPage.getTextByHead("Arrive Station"), arriveAt, "Arrive Station is not displayed as expected");
+    Assert.assertEquals(bookTicketPage.getTextByHead("Depart Station"), departFrom, "Depart Station is not displayed as expected");
+    homePage.clickLogoutTab();
   }
 }

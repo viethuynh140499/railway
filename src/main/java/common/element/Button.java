@@ -1,4 +1,4 @@
-package common.helpers.element;
+package common.element;
 
 import org.openqa.selenium.By;
 

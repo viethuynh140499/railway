@@ -1,69 +1,39 @@
 package page_objects;
 
-import common.helpers.element.Label;
-import common.helpers.element.Link;
-import common.helpers.element.Tab;
+import common.element.Label;
+import common.element.Tab;
 import org.openqa.selenium.By;
 
 public class GeneralPage {
     private final Tab tabLogin = new Tab(By.cssSelector("a[href$='Login.cshtml'] span"));
     private final Tab tabRegister = new Tab(By.cssSelector("a[href$='Register.cshtml'] span"));
-    private final Tab tabFAQ = new Tab(By.cssSelector("a[href$='FAQ.cshtml'] span"));
-    private final Tab tabTimetable = new Tab(By.cssSelector("a[href$='TrainTimeListPage.cshtml'] span"));
-    private final Tab tabContact = new Tab(By.cssSelector("a[href$='Contact.cshtml'] span"));
     private final Tab tabBookTicket = new Tab(By.cssSelector("a[href$='BookTicketPage.cshtml'] span"));
-    private final Tab tabTicketPrice = new Tab(By.cssSelector("a[href$='TrainPriceListPage.cshtml'] span"));
-    private final Tab tabHome = new Tab(By.cssSelector(".selected a span"));
-    private final Link linkRegister = new Link(By.cssSelector("#content a[href$='Register.cshtml']"));
-    public final Label lblWelcomeMessage = new Label(By.cssSelector(".account strong"));
-    public final Tab tabLogout = new Tab(By.cssSelector("a[href*=Logout]"));
+    private final Label lblWelcomeMessage = new Label(By.cssSelector(".account strong"));
+    private final Tab tabLogout = new Tab(By.cssSelector("a[href*=Logout]"));
+    private final Tab tabMyTicket = new Tab(By.cssSelector("a[href$='ManageTicket.cshtml'] span"));
 
-    public void clickTabLogin() {
+    public void clickLoginTab() {
         this.tabLogin.click();
     }
 
-    public void clickTabRegister() {
+    public void clickRegisterTab() {
         this.tabRegister.click();
     }
 
-    public void clickTabFAQ() {
-        this.tabFAQ.click();
-    }
-
-    public void clickTabTimetable() {
-        this.tabTimetable.click();
-    }
-
-    public void clickTabContact() {
-        this.tabContact.click();
-    }
-
-    public void clickTabBookTicket() {
+    public void clickBookTicketTab() {
         this.tabBookTicket.click();
     }
 
-    public void clickTabTicketPrice() {
-        this.tabTicketPrice.click();
-    }
-
-    public void clickTabHome() {
-        this.tabHome.click();
-    }
-
-    public void clickLinkRegister() {
-        this.linkRegister.click();
-    }
-
-    public void clickTabLogout(){
-        this.tabLogout.click();
-    }
-
     public String getWelcomeMessage() {
-       return this.lblWelcomeMessage.getText();
+        return this.lblWelcomeMessage.getText();
     }
 
-    public void logout() {
-        this.clickTabLogin();
+    public void clickMyTicketTab() {
+        this.tabMyTicket.click();
+    }
+
+    public void clickLogoutTab() {
+        this.tabLogout.click();
     }
 
 }
