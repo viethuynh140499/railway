@@ -1,6 +1,6 @@
 package test_cases;
 
-import common.helpers.data.FakerDataHelper;
+import common.helpers.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page_objects.HomePage;
@@ -12,21 +12,21 @@ public class RegisterTest extends BaseTest {
 
   @Test(description = "User created an account successfully  with correct information")
   public void TC01() {
-    String username = FakerDataHelper.getRandomEmailValid();
-    String password = FakerDataHelper.getRandomPasswordValid();
-    String pid = FakerDataHelper.getRandomPIDValid();
-    homePage.clickTabRegister();
+    String username = DataHelper.getRandomEmailValid();
+    String password = DataHelper.getRandomPasswordValid();
+    String pid = DataHelper.getRandomPIDValid();
+    homePage.clickRegisterTab();
     registerPage.register(username, password, password, pid);
 
-    Assert.assertEquals(registerPage.getTxtSuccessfully(), "You'll here.");
+    Assert.assertEquals(registerPage.getSuccessfullyMessage(), "You'll here.");
   }
 
   @Test(description = "User creates an account unsuccessfully with incorrect information")
   public void TC02() {
-    String username = FakerDataHelper.getRandomEmailInvalid();
-    String password = FakerDataHelper.getRandomPasswordInvalid();
-    String pid = FakerDataHelper.getRandomPIDInvalid();
-    homePage.clickTabRegister();
+    String username = DataHelper.getRandomEmailInvalid();
+    String password = DataHelper.getRandomPasswordInvalid();
+    String pid = DataHelper.getRandomPIDInvalid();
+    homePage.clickRegisterTab();
     registerPage.register(username, password, password, pid);
 
     Assert.assertEquals(registerPage.getErrorMessage(), "There're errors in the form. Please correct the errors and try again.");

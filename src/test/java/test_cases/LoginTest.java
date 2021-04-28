@@ -2,9 +2,8 @@ package test_cases;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import common.constant.Constant;
-import common.helpers.data.DataHelper;
-import common.helpers.data.FakerDataHelper;
+import common.Constant;
+import common.helpers.DataHelper;
 import model.User;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
@@ -24,27 +23,13 @@ public class LoginTest extends BaseTest {
 
     @Test( description = "login successfully with valid email and password")
     public void TC01() {
-        homePage.clickTabLogin();
+        homePage.clickLoginTab();
         loginPage.login(Constant.USERNAME, Constant.PASSWORD);
 
         String actualResult = homePage.getWelcomeMessage();
         String expectedResult = "Welcome" + Constant.USERNAME;
 
-        homePage.logout();
-
-        Assert.assertEquals(actualResult, expectedResult, "Welcome message not match");
-    }
-
-
-    @Test(dataProvider = "invalidUser", description = "login unsuccessfully with valid email and password")
-    public void TC02(User user) {
-        homePage.clickTabLogin();
-        loginPage.login(user.getUsername(), user.getPassword());
-
-        String actualResult = homePage.getWelcomeMessage();
-        String expectedResult = user.getWelcomeMessage();
-
-        homePage.logout();
+        homePage.clickLogoutTab();
 
         Assert.assertEquals(actualResult, expectedResult, "Welcome message not match");
     }
@@ -53,9 +38,7 @@ public class LoginTest extends BaseTest {
     public static Object[] getValidLoginData() throws IOException, ParseException {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("src/test/resources/data/login_successfully.json");
-//        String json = DataHelper.getJsonData(DataHelper.getProjectPath() + Constant.DATA_PATH + "login_successfully.json").toString();
-        String json = DataHelper.getJsonData("src/test/resources/data/login_successfully.json").toString();
-//        String json = file.getAbsoluteFile().toString();
+        String json = DataHelper.getJsonData(file.getAbsolutePath()).toString();
         List<User> users = objectMapper.readValue(json, new TypeReference<List<User>>() {
         });
         return users.toArray();

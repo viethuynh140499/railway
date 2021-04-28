@@ -1,8 +1,8 @@
-package common.helpers.element;
+package common.element;
 
 import org.openqa.selenium.By;
 
-public class Tab extends BaseElement{
+public class Tab extends BaseElement {
   public Tab(By locator) {
     super(locator);
   }
