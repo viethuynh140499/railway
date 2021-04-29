@@ -1,4 +1,4 @@
-package common;
+package common.helpers;
 
 public class Constant {
   public static final String RAILWAY_URL = "http://www.railway2.somee.com/";

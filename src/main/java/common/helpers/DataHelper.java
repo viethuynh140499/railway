@@ -5,7 +5,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -13,6 +12,8 @@ import java.util.Calendar;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DataHelper {
+  private static Faker faker = new Faker();
+
   public static JSONArray getJsonData(String pathFileJson) throws IOException, ParseException {
 
     JSONParser jsonParser = new JSONParser();
@@ -34,29 +35,27 @@ public class DataHelper {
     return new SimpleDateFormat("M/d/yyyy").format(cal.getTime());
   }
 
-  private static Faker faker = new Faker();
-
-  public static String getRandomEmailValid() {
+  public static String getRandomValidEmail() {
     return faker.internet().emailAddress();
   }
 
-  public static String getRandomPasswordValid() {
+  public static String getRandomValidPassword() {
     return faker.letterify("?????????");
   }
 
-  public static String getRandomPIDValid() {
+  public static String getRandomValidPID() {
     return faker.numerify("##########");
   }
 
-  public static String getRandomEmailInvalid() {
+  public static String getRandomInvalidEmail() {
     return faker.letterify("?????");
   }
 
-  public static String getRandomPasswordInvalid() {
+  public static String getRandomInvalidPassword() {
     return faker.letterify("???");
   }
 
-  public static String getRandomPIDInvalid() {
+  public static String getRandomInvalidPID() {
     return faker.numerify("#####");
   }
 }

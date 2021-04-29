@@ -11,6 +11,8 @@ public class GeneralPage {
     private final Label lblWelcomeMessage = new Label(By.cssSelector(".account strong"));
     private final Tab tabLogout = new Tab(By.cssSelector("a[href*=Logout]"));
     private final Tab tabMyTicket = new Tab(By.cssSelector("a[href$='ManageTicket.cshtml'] span"));
+    private final Tab tabChangePassword = new Tab(By.cssSelector("a[href$='ChangePassword.cshtml'] span"));
+
 
     public void clickLoginTab() {
         this.tabLogin.click();
@@ -30,6 +32,10 @@ public class GeneralPage {
 
     public void clickMyTicketTab() {
         this.tabMyTicket.click();
+    }
+
+    public void clickChangePasswordTab() {
+        this.tabChangePassword.click();
     }
 
     public void clickLogoutTab() {

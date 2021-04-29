@@ -11,10 +11,10 @@ public class RegisterTest extends BaseTest {
   RegisterPage registerPage = new RegisterPage();
 
   @Test(description = "User created an account successfully  with correct information")
-  public void TC01() {
-    String username = DataHelper.getRandomEmailValid();
-    String password = DataHelper.getRandomPasswordValid();
-    String pid = DataHelper.getRandomPIDValid();
+  public void testCase01() {
+    String username = DataHelper.getRandomValidEmail();
+    String password = DataHelper.getRandomValidPassword();
+    String pid = DataHelper.getRandomValidPID();
     homePage.clickRegisterTab();
     registerPage.register(username, password, password, pid);
 
@@ -22,10 +22,10 @@ public class RegisterTest extends BaseTest {
   }
 
   @Test(description = "User creates an account unsuccessfully with incorrect information")
-  public void TC02() {
-    String username = DataHelper.getRandomEmailInvalid();
-    String password = DataHelper.getRandomPasswordInvalid();
-    String pid = DataHelper.getRandomPIDInvalid();
+  public void testCase02() {
+    String username = DataHelper.getRandomInvalidEmail();
+    String password = DataHelper.getRandomInvalidPassword();
+    String pid = DataHelper.getRandomInvalidPID();
     homePage.clickRegisterTab();
     registerPage.register(username, password, password, pid);
 
