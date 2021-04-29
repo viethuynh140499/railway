@@ -4,3 +4,4 @@
 .idea
 /selenium_project.iml
 target
+test-output

@@ -1,17 +1,16 @@
 package common.helpers;
 
-import common.Constant;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import java.util.concurrent.TimeUnit;
 
 public class BrowserHelper {
 
-  public enum DriverType {CHROME, FIREFOX, IE}
+  public enum DriverType {CHROME, FIREFOX, EDGE}
 
   private static WebDriver driver;
 
@@ -29,13 +28,14 @@ public class BrowserHelper {
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
         break;
-      default:
-        WebDriverManager.iedriver().setup();
-        driver = new InternetExplorerDriver();
+      case EDGE:
+        WebDriverManager.edgedriver().setup();
+
+        driver = new EdgeDriver();
         break;
     }
     driver.manage().timeouts().implicitlyWait(Constant.TIME_OUT_IMPLICITLY_WAIT, TimeUnit.SECONDS);
-    driver.manage().window().maximize();
+    maximizeBrowser();
   }
 
   public static void quitBrowser() {
@@ -47,5 +47,9 @@ public class BrowserHelper {
 
   public static WebDriver getDriver() {
     return driver;
+  }
+
+  public static void maximizeBrowser() {
+    getDriver().manage().window().maximize();
   }
 }
