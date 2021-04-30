@@ -13,7 +13,7 @@ public class BookTicketTest extends BaseTest {
   private LoginPage loginPage = new LoginPage();
   private BookTicketPage bookTicketPage = new BookTicketPage();
 
-  @Test(description = "Book can book ticket successfully")
+  /*@Test(description = "Book can book ticket successfully")
   public void testCase01() {
 
     String departDate = DataHelper.getRandomDepartDate();
@@ -33,5 +33,5 @@ public class BookTicketTest extends BaseTest {
 
     Assert.assertEquals(bookTicketPage.getTableCellValue("Arrive Station"), arriveAt, "Arrive Station is not displayed as expected");
     Assert.assertEquals(bookTicketPage.getTableCellValue("Depart Station"), departFrom, "Depart Station is not displayed as expected");
-  }
+  }*/
 }

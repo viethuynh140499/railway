@@ -1,21 +1,32 @@
 package test_cases.draft;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import common.helpers.BrowserHelper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
-import java.util.Random;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import java.util.List;
 
 public class Main {
-
-  public static void main(String[] args) {
-//    public static int getRandomNumbers(){
-//      int min = 0;
-//      int max = 10;
-//      int amount_random = (int)Math.floor(Math.random()*(max-min+1)+min);
-//      return amount_random ;
+    public static void main(String[] args) {
+        BrowserHelper.startBrowser(BrowserHelper.DriverType.CHROME);
+        try {
+            BrowserHelper.getDriver().get("https://example.com");
+            // Get all the elements available with tag name 'p'
+            List<WebElement> elements = BrowserHelper.getDriver().findElements(By.tagName("p"));
+            for (WebElement element : elements) {
+                System.out.println("Paragraph text:" + element.getText());
+            }
+        } finally {
+            BrowserHelper.getDriver().quit();
+        }
     }
-
-  }
+}
 
 

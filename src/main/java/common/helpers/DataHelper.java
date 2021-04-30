@@ -51,6 +51,8 @@ public class DataHelper {
     return faker.letterify("?????");
   }
 
+  public static String getRandomLessThan8EmailCharacter(){return faker.letterify("?????");}
+
   public static String getRandomInvalidPassword() {
     return faker.letterify("???");
   }

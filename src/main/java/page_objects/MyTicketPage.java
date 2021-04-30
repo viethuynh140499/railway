@@ -41,7 +41,7 @@ public class MyTicketPage extends GeneralPage {
 //    this.btnApplyFilter.submit();
 //  }
 
-  public void findTicke t(String status) {
+  public void findTicket(String status) {
     this.sltStatus.selectDropdownOptionByText(status);
     this.btnApplyFilter.submit();
   }

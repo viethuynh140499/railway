@@ -4,7 +4,7 @@ import common.element.Button;
 import common.element.Label;
 import common.element.Link;
 import common.element.TextBox;
-import common.helpers.ElementHelper;
+import model.User;
 import org.openqa.selenium.By;
 
 public class LoginPage extends GeneralPage {
@@ -28,10 +28,10 @@ public class LoginPage extends GeneralPage {
         return this.lblErrorPassword.getText();
     }
 
-    public void login(String username, String password) {
-        this.txtEmail.enterText(username);
-        this.txtPassword.enterText(password);
+    public void login(User user) {
         this.btnLogin.scrollToView();
+        this.txtEmail.enterText(user.getUsername());
+        this.txtPassword.enterText(user.getPassword());
         this.btnLogin.submit();
     }
 }

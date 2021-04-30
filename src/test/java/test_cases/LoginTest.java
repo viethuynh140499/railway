@@ -1,4 +1,4 @@
-package test_cases.draft;
+package test_cases;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,7 +11,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import page_objects.HomePage;
 import page_objects.LoginPage;
-import test_cases.BaseTest;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,25 +23,45 @@ public class LoginTest extends BaseTest {
 
     @Test(description = "login successfully with valid email and password")
     public void TC01() {
+        User user = new User(Constant.USERNAME, Constant.PASSWORD);
         homePage.clickLoginTab();
-        loginPage.login(Constant.USERNAME, Constant.PASSWORD);
+        loginPage.login(user);
 
         String actualResult = homePage.getWelcomeMessage();
-        String expectedResult = "Welcome" + Constant.USERNAME;
+        String expectedResult = "Welcome " + Constant.USERNAME;
         Assert.assertEquals(actualResult, expectedResult, "Welcome message not match");
 
         homePage.clickLogoutTab();
     }
 
-    @Test(description ="login unsuccessfully with invalid email and password")
-    public void TC02() {
+    @Test(description = "login unsuccessfully with invalid email and password")
+    public void TC02(User user) {
+        homePage.clickLoginTab();
+        loginPage.login(user);
+
+        String actualResult = homePage.getWelcomeMessage();
+        String expectedResult = user.getWelcomeMessage();
+
+        homePage.clickLogoutTab();
+
+        Assert.assertEquals(actualResult, expectedResult, "Welcome message not match");
+    }
+
+    @Test
+    public void testCase03(){
 
     }
 
+    @Test
+    public void testCase04(){
+
+    }
+
+
     @DataProvider(name = "invalidUser")
-    public static Object[] getValidLoginData() throws IOException, ParseException {
+    public static Object[] getInValidLoginData() throws IOException, ParseException {
         ObjectMapper objectMapper = new ObjectMapper();
-        File file = new File("src/test/resources/data/login_successfully.json");
+        File file = new File("src/test/resources/data/invalidLogin.json");
         String json = DataHelper.getJsonData(file.getAbsolutePath()).toString();
         List<User> users = objectMapper.readValue(json, new TypeReference<List<User>>() {
         });

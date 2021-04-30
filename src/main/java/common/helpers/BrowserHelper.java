@@ -52,4 +52,6 @@ public class BrowserHelper {
   public static void maximizeBrowser() {
     getDriver().manage().window().maximize();
   }
+
+
 }
