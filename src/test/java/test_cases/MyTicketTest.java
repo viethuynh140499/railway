@@ -1,25 +1,27 @@
 package test_cases;
 
+import common.helpers.Constant;
+import model.User;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import page_objects.HomePage;
 import page_objects.LoginPage;
 import page_objects.MyTicketPage;
 
 public class MyTicketTest extends BaseTest {
-    private final HomePage homePage = new HomePage();
-    private final LoginPage loginPage = new LoginPage();
-    private final MyTicketPage manageTicket = new MyTicketPage();
+    User user = new User(Constant.USERNAME, Constant.PASSWORD);
 
-  /*@BeforeMethod
+  @BeforeMethod
   public void beforeMethod(){
     homePage.clickLoginTab();
-    loginPage.login(Constant.USERNAME, Constant.PASSWORD);
+    loginPage.login(user);
     homePage.clickMyTicketTab();
   }
 
   @Test(description = "User can cancel ticket successfully")
   public void testCase01() {
     manageTicket.cancelAllTicket();
-  }*/
+  }
 
 //  @Test(description = "User can u ")
 //  public void TC02(){

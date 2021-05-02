@@ -17,10 +17,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class LoginTest extends BaseTest {
-
-    private HomePage homePage = new HomePage();
-    private LoginPage loginPage = new LoginPage();
-
     @Test(description = "login successfully with valid email and password")
     public void TC01() {
         User user = new User(Constant.USERNAME, Constant.PASSWORD);
@@ -34,32 +30,32 @@ public class LoginTest extends BaseTest {
         homePage.clickLogoutTab();
     }
 
-    @Test(description = "login unsuccessfully with invalid email and password")
+    @Test(dataProvider = "invalidUser", description = "login unsuccessfully with valid email and password")
     public void TC02(User user) {
         homePage.clickLoginTab();
         loginPage.login(user);
 
-        String actualResult = homePage.getWelcomeMessage();
-        String expectedResult = user.getWelcomeMessage();
+        String actualResult = loginPage.getErrorMessage();
+        String expectedResult = "Invalid username or password. Please try again.";
 
-        homePage.clickLogoutTab();
+        Assert.assertEquals(actualResult, expectedResult, "Error message is not displayed");
+    }
 
-        Assert.assertEquals(actualResult, expectedResult, "Welcome message not match");
+
+    @Test
+    public void testCase03() {
+        User user = new User();
+
+
     }
 
     @Test
-    public void testCase03(){
+    public void testCase04() {
 
     }
-
-    @Test
-    public void testCase04(){
-
-    }
-
 
     @DataProvider(name = "invalidUser")
-    public static Object[] getInValidLoginData() throws IOException, ParseException {
+    public static Object[] getValidLoginData() throws IOException, ParseException {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("src/test/resources/data/invalidLogin.json");
         String json = DataHelper.getJsonData(file.getAbsolutePath()).toString();

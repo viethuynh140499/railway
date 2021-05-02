@@ -13,10 +13,6 @@ import page_objects.RegisterPage;
 
 
 public class ChangePasswordTest extends BaseTest {
-    HomePage homePage = new HomePage();
-    LoginPage loginPage = new LoginPage();
-    ChangePasswordPage changePasswordPage = new ChangePasswordPage();
-    RegisterPage registerPage = new RegisterPage();
     String newPassword = "viet123456";
     String randomPassword = DataHelper.getRandomValidPassword();
 

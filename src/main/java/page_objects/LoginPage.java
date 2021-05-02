@@ -14,7 +14,6 @@ public class LoginPage extends GeneralPage {
     private final Label lblErrorMessage = new Label(By.cssSelector("p[class*='error']"));
     private final Label lblErrorUsername = new Label(By.cssSelector("[for$='username']"));
     private final Label lblErrorPassword = new Label(By.cssSelector("[for$='password']"));
-    private final Link lnkRegister = new Link(By.cssSelector("a[href$='Register.cshtml']"));
 
     public String getErrorMessage() {
         return this.lblErrorMessage.getText();
@@ -32,7 +31,7 @@ public class LoginPage extends GeneralPage {
         this.btnLogin.scrollToView();
         this.txtEmail.enterText(user.getUsername());
         this.txtPassword.enterText(user.getPassword());
-        this.btnLogin.submit();
+        this.btnLogin.findElement().click();
     }
 }
 

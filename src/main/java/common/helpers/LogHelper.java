@@ -1,18 +1,22 @@
-package model;
+package common.helpers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Log {
-  private static Logger Logger = LogManager.getLogger(Log.class.getName());
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class LogHelper {
+
+  private static Logger Logger = LogManager.getLogger(LogHelper.class.getName());
 
   public static void startTestCase(String sTestCaseName) {
-    info("\n----------------- " + sTestCaseName + "\n");
+    info("--------- " + sTestCaseName + " ---------\n");
   }
 
   //This is to print log for the ending of the test case
-  public static void endTestCase(String sTestCaseName) {
-    info("----------------- " + "-END TEST CASE-" + " -----------------");
+  public static void endTestCase() {
+    info("--------- END TEST CASE: ---------");
   }
 
   // Need to create these methods, so that they can be called

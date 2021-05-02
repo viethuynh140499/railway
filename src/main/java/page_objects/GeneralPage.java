@@ -12,6 +12,7 @@ public class GeneralPage {
     private final Tab tabLogout = new Tab(By.cssSelector("a[href*=Logout]"));
     private final Tab tabMyTicket = new Tab(By.cssSelector("a[href$='ManageTicket.cshtml'] span"));
     private final Tab tabChangePassword = new Tab(By.cssSelector("a[href$='ChangePassword.cshtml'] span"));
+    private final Label lblGeneralErrorMessage = new Label(By.cssSelector(".message"));
 
 
     public void clickLoginTab() {
@@ -40,6 +41,10 @@ public class GeneralPage {
 
     public void clickLogoutTab() {
         this.tabLogout.click();
+    }
+
+    public String getGeneralErrorMessage() {
+        return this.lblGeneralErrorMessage.getText();
     }
 
 }
