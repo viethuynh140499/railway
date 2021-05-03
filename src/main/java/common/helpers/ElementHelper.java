@@ -10,4 +10,6 @@ public class ElementHelper {
     WebDriverWait wait = new WebDriverWait(BrowserHelper.getDriver(), seconds);
     wait.until(ExpectedConditions.visibilityOf(webElement));
   }
+
+
 }

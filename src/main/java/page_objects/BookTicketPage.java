@@ -40,7 +40,6 @@ public class BookTicketPage extends GeneralPage {
         this.sltDate.scrollToView();
         this.sltDate.selectDropdownOptionByText(ticket.getDepartDate());
         this.sltDepartFrom.selectDropdownOptionByText(ticket.getDepartFrom());
-
         this.sltSeatType.selectDropdownOptionByText(ticket.getSeatType());
         this.sltTicketAmount.selectDropdownOptionByText(ticket.getTicketAmount());
         try {

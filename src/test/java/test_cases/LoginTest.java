@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class LoginTest extends BaseTest {
+public class  LoginTest extends BaseTest {
     @Test(description = "login successfully with valid email and password")
     public void TC01() {
         User user = new User(Constant.USERNAME, Constant.PASSWORD);

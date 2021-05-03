@@ -13,5 +13,10 @@ public class Ticket {
     private String arriveAt;
     private String seatType;
     private String ticketAmount;
-    private String newTicketAmout;
+    private String newTicketAmount;
+    private String status;
+
+    public Ticket(String status) {
+        this.status = status;
+    }
 }

@@ -2,47 +2,63 @@ package page_objects;
 
 import common.element.Button;
 import common.element.DropDown;
+import common.element.Label;
 import common.element.TextBox;
 import common.helpers.AlertHelper;
+import model.Ticket;
 import org.openqa.selenium.By;
 
 public class MyTicketPage extends GeneralPage {
-  private final DropDown sltDepartStation = new DropDown(By.cssSelector("[name='FilterDpStation']"));
-  private final DropDown sltArriveAt = new DropDown(By.cssSelector("[name='FilterArStation']"));
-  private final TextBox txtDepartDate = new TextBox(By.cssSelector("[name='FilterDpDate']"));
-  private final DropDown sltStatus = new DropDown(By.cssSelector("[name='FilterStatus']"));
-  private final Button btnApplyFilter = new Button(By.cssSelector("div input[type=submit]"));
-  private final Button btnCancelTicket = new Button(By.cssSelector("[value=Cancel]"));
-  private final Button btnDeleteTicket = new Button(By.cssSelector("[value=Delete]"));
+    private final DropDown sltDepartStation = new DropDown(By.cssSelector("[name='FilterDpStation']"));
+    private final DropDown sltArriveAt = new DropDown(By.cssSelector("[name='FilterArStation']"));
+    private final TextBox txtDepartDate = new TextBox(By.cssSelector("[name='FilterDpDate']"));
+    private final DropDown sltStatus = new DropDown(By.cssSelector("[name='FilterStatus']"));
+    private final Button btnApplyFilter = new Button(By.cssSelector("div input[type=submit]"));
+    private final Button btnCancelTicket = new Button(By.cssSelector("[value=Cancel]"));
+    private final Button btnDeleteTicket = new Button(By.cssSelector("[type=button]"));
+    private final Label lblFilterErrorMessage = new Label(By.cssSelector(".Filter span:first-child"));
+    private final Label lblErrorMessage = new Label(By.cssSelector(".error"));
+    private final Label lblNoteMessage = new Label(By.cssSelector(".message li"));
+    private final Label tblFilter = new Label(By.cssSelector(".Filter table"));
 
-  public void cancelAllTicket() {
-    int size = this.btnCancelTicket.findElements().size();
-    for (int i = 0; i < size; i++) {
-      this.btnCancelTicket.scrollToView();
-      this.btnCancelTicket.click();
-      AlertHelper.handleAlert(true);
+    public String filterErrorMessage() {
+        return this.lblFilterErrorMessage.getText();
     }
-  }
 
-  public void deleteAllTicket() {
-    int size = this.btnDeleteTicket.findElements().size();
-    for (int i = 0; i < size; i++) {
-      this.btnDeleteTicket.scrollToView();
-      this.btnDeleteTicket.click();
-      AlertHelper.handleAlert(true);
+    public String errorMessage() {
+        return this.lblErrorMessage.getText();
     }
-  }
 
-//  public void findTicket(String departStation, String arriveAt, String departDate, String status) {
-//    this.sltDepartStation.selectDropdownOptionByText(departStation);
-//    this.sltArriveAt.selectDropdownOptionByText(arriveAt);
-//    this.txtDepartDate.enterText(departDate);
-//    this.sltStatus.selectDropdownOptionByText(status);
-//    this.btnApplyFilter.submit();
-//  }
+    public String noteMessage() {
+        return this.lblNoteMessage.getText();
+    }
 
-  public void findTicket(String status) {
-    this.sltStatus.selectDropdownOptionByText(status);
-    this.btnApplyFilter.submit();
-  }
+    public void cancelAllTicket() {
+        int size = this.btnCancelTicket.findElements().size();
+        for (int i = 0; i < size; i++) {
+            this.btnCancelTicket.scrollToView();
+            this.btnCancelTicket.click();
+            AlertHelper.handleAlert(true);
+        }
+    }
+
+    public void deleteAllTicket() {
+        int size = this.btnDeleteTicket.findElements().size();
+        for (int i = 0; i < size; i++) {
+            this.btnDeleteTicket.scrollToView();
+            this.btnDeleteTicket.click();
+            AlertHelper.handleAlert(true);
+        }
+    }
+
+
+    public void findTicket(Ticket ticket) {
+        if (!this.tblFilter.findElement().isDisplayed())
+        this.sltDepartStation.selectDropdownOptionByText(ticket.getDepartFrom());
+        this.sltArriveAt.selectDropdownOptionByText(ticket.getArriveAt());
+        this.txtDepartDate.enterText(ticket.getDepartDate());
+        this.sltStatus.selectDropdownOptionByText(ticket.getStatus());
+        this.btnApplyFilter.submit();
+    }
 }
+

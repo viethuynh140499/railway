@@ -8,34 +8,37 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class BaseElement {
-  private final By locator;
 
-  public BaseElement(By locator) {
-    this.locator = locator;
-  }
+    private final By locator;
 
-  public WebElement findElement() {
-    return BrowserHelper.getDriver().findElement(locator);
-  }
+    public BaseElement(By locator) {
+        this.locator = locator;
+    }
 
-  public List<WebElement> findElements() {
-    return BrowserHelper.getDriver().findElements(locator);
-  }
+    public WebElement findElement() {
+        return BrowserHelper.getDriver().findElement(locator);
+    }
 
-  public void click() {
-    findElement().click();
-  }
+    public List<WebElement> findElements() {
+        return BrowserHelper.getDriver().findElements(locator);
+    }
 
-  public void submit() {
-    findElement().submit();
-  }
+    public void click() {
+        findElement().click();
+    }
 
-  public String getText() {
-    return findElement().getText();
-  }
+    public void submit() {
+        findElement().submit();
+    }
 
-  public void scrollToView() {
-    JavascriptExecutor js = (JavascriptExecutor) BrowserHelper.getDriver();
-    js.executeScript("arguments[0].scrollIntoView(true);", findElement());
-  }
+    public String getText() {
+        return findElement().getText();
+    }
+
+    public void scrollToView() {
+        JavascriptExecutor js = (JavascriptExecutor) BrowserHelper.getDriver();
+        js.executeScript("arguments[0].scrollIntoView(true);", findElement());
+    }
+
+
 }

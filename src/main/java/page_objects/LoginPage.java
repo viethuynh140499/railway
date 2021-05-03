@@ -30,8 +30,9 @@ public class LoginPage extends GeneralPage {
     public void login(User user) {
         this.btnLogin.scrollToView();
         this.txtEmail.enterText(user.getUsername());
+        this.txtPassword.scrollToView();
         this.txtPassword.enterText(user.getPassword());
-        this.btnLogin.findElement().click();
+        this.btnLogin.click();
     }
 }
 
