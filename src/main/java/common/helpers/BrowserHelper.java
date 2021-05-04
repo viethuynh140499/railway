@@ -1,10 +1,7 @@
 package common.helpers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -70,5 +67,17 @@ public class BrowserHelper {
     public static void returnPreviousPage() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.history.go(-1)");
+    }
+
+    public static String getTitle(){
+        return getDriver().getTitle();
+    }
+
+    public static void handleAlert(boolean action) {
+        Alert alert = BrowserHelper.getDriver().switchTo().alert();
+        if (action)
+            alert.accept();
+        else
+            alert.dismiss();
     }
 }

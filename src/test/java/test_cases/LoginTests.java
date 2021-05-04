@@ -1,5 +1,6 @@
 package test_cases;
 
+import common.helpers.BrowserHelper;
 import common.helpers.Constant;
 import common.helpers.DataHelper;
 import model.User;
@@ -39,7 +40,7 @@ public class LoginTests extends BaseTest {
   }
 
   @Test(description = "User cannot log into Railway with invalid password ")
-  public void test() {
+  public void TC03() {
 
     User user = new User(Constant.USERNAME, DataHelper.getRandomInvalidPassword());
 
@@ -52,4 +53,11 @@ public class LoginTests extends BaseTest {
     Assert.assertEquals(actualResult, expectedResult);
   }
 
+  @Test(description = "Login page displays when un-logged User clicks on Book ticket tab")
+  public void TC04() {
+    homePage.clickBookTicket();
+    String actualResult = BrowserHelper.getTitle();
+    String expectedResult = "Safe Railway - Login";
+    Assert.assertEquals(actualResult, expectedResult);
+  }
 }
