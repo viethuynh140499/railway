@@ -42,7 +42,7 @@ public class BrowserHelper {
                 driver = new EdgeDriver();
                 break;
         }
-        driver.manage().timeouts().implicitlyWait(Constant.TIME_OUT_IMPLICITLY_WAIT, TimeUnit.SECONDS);
+//        driver.manage().timeouts().implicitlyWait(Constant.TIME_OUT_IMPLICITLY_WAIT, TimeUnit.SECONDS);
         maximizeBrowser();
     }
 
