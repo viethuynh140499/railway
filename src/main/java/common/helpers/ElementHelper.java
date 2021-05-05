@@ -1,6 +1,5 @@
 package common.helpers;
 
-import common.helpers.BrowserHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
