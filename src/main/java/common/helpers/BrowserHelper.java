@@ -38,11 +38,13 @@ public class BrowserHelper {
                 break;
             case EDGE:
                 WebDriverManager.edgedriver().setup();
-
                 driver = new EdgeDriver();
                 break;
+            default:
+                driver = new ChromeDriver();
+                break;
         }
-//        driver.manage().timeouts().implicitlyWait(Constant.TIME_OUT_IMPLICITLY_WAIT, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Constant.TIME_OUT_IMPLICITLY_WAIT, TimeUnit.SECONDS);
         maximizeBrowser();
     }
 
