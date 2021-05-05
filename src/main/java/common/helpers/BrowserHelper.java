@@ -13,7 +13,6 @@ import org.openqa.selenium.opera.OperaDriver;
 import java.util.concurrent.TimeUnit;
 
 public class BrowserHelper {
-
     public enum DriverType {CHROME, FIREFOX, EDGE, OPERA}
 
     private static WebDriver driver;
@@ -38,11 +37,13 @@ public class BrowserHelper {
                 break;
             case EDGE:
                 WebDriverManager.edgedriver().setup();
-
                 driver = new EdgeDriver();
                 break;
+            default:
+                driver = new ChromeDriver();
+                break;
         }
-//        driver.manage().timeouts().implicitlyWait(Constant.TIME_OUT_IMPLICITLY_WAIT, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Constant.TIME_OUT_IMPLICITLY_WAIT, TimeUnit.SECONDS);
         maximizeBrowser();
     }
 

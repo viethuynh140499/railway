@@ -9,7 +9,5 @@ public class AlertHelper {
             alert.accept();
         else
             alert.dismiss();
-
     }
-
 }
