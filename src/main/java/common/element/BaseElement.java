@@ -3,6 +3,7 @@ package common.element;
 import common.helpers.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -35,10 +36,16 @@ public class BaseElement {
         return findElement().getText();
     }
 
+    public boolean isDisplayed() {
+        try {
+            return findElement().isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
     public void scrollToView() {
         JavascriptExecutor js = (JavascriptExecutor) BrowserHelper.getDriver();
         js.executeScript("arguments[0].scrollIntoView(true);", findElement());
     }
-
-
 }
