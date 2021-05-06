@@ -44,6 +44,7 @@ public class BrowserHelper {
                 break;
         }
         driver.manage().timeouts().implicitlyWait(Constant.IMPLICITLY_WAIT_TIME_OUT, TimeUnit.SECONDS);
+
         maximizeBrowser();
     }
 
