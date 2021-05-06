@@ -21,5 +21,4 @@ public class LoginPage extends GeneralPage {
     public String getErrorMessage() {
         return this.lblErrorMessage.getText();
     }
-
 }

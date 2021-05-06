@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
 public class BaseTest {
+<<<<<<< HEAD
     @BeforeMethod
     @Parameters("browser")
     public void beforeMethod(String browser) {
@@ -18,4 +19,18 @@ public class BaseTest {
     public void afterMethod() {
         BrowserHelper.quitBrowser();
     }
+=======
+  @BeforeMethod
+  @Parameters("browser")
+  public void beforeMethod(String browser) {
+    BrowserHelper.startBrowser(BrowserHelper.DriverType.valueOf(browser.toUpperCase()));
+    BrowserHelper.navigateToUrl(Constant.RAILWAY_URL);
+  }
+
+  @AfterMethod
+  public void afterMethod() {
+    BrowserHelper.quitBrowser();
+  }
+
+>>>>>>> master
 }
