@@ -1,7 +1,9 @@
 package common.helpers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -41,6 +43,7 @@ public class BrowserHelper {
                 break;
         }
         driver.manage().timeouts().implicitlyWait(Constant.IMPLICITLY_WAIT_TIME_OUT, TimeUnit.SECONDS);
+
         maximizeBrowser();
     }
 
@@ -63,11 +66,11 @@ public class BrowserHelper {
         getDriver().manage().window().maximize();
     }
 
-    public static void acceptAlert(){
+    public static void acceptAlert() {
         getDriver().switchTo().alert().accept();
     }
 
-    public static void dismissAlert(){
+    public static void dismissAlert() {
         getDriver().switchTo().alert().dismiss();
     }
 }
