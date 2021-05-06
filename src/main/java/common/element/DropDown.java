@@ -13,4 +13,9 @@ public class DropDown extends BaseElement {
     Select dropdown = new Select(findElement());
     dropdown.selectByVisibleText(text);
   }
+
+  public String getSelectedOptionAsText() {
+    Select dropdown = new Select(findElement());
+    return dropdown.getFirstSelectedOption().getText();
+  }
 }

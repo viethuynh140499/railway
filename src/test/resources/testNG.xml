@@ -4,18 +4,32 @@
         <parameter name="browser" value="CHROME" />
         <classes>
             <class name="test_cases.LoginTests"/>
+            <class name="test_cases.ChangePasswordTest"/>
+            <class name="test_cases.RegisterTests"/>
+            <class name="test_cases.BookTicketTest"/>
+            <class name="test_cases.MyTicketTest"/>
         </classes>
     </test>
     <test name="FirefoxTest">
         <parameter name="browser" value="FIREFOX" />
         <classes>
             <class name="test_cases.LoginTests"/>
+            <class name="test_cases.ChangePasswordTest"/>
+            <class name="test_cases.RegisterTests"/>
+            <class name="test_cases.BookTicketTest"/>
+            <class name="test_cases.MyTicketTest"/>
+            <class name="test_cases.MyTicketTest"/>
         </classes>
     </test>
     <test name="EdgeTest">
         <parameter name="browser" value="EDGE" />
         <classes>
             <class name="test_cases.LoginTests"/>
+            <class name="test_cases.RegisterTests"/>
+            <class name="test_cases.LoginTests"/>
+            <class name="test_cases.ChangePasswordTest"/>
+            <class name="test_cases.BookTicketTest"/>
+            <class name="test_cases.MyTicketTest"/>
         </classes>
     </test>
 </suite>
