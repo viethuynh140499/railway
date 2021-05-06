@@ -34,8 +34,10 @@ public class LoginTests extends BaseTest {
     String actualErrorMessage = loginPage.getErrorMessage();
     String expectedErrorMessage = "There was a problem with your login and/or errors exist in your form.";
 
-    Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error Message is not displayed");
+    Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message is not displayed");
   }
+
+
   @Test(description = "User cannot log into Railway with invalid password ")
   public void TC03() {
     User user = new User(Constant.USERNAME, Constant.INVALID_PASSWORD);
@@ -47,5 +49,14 @@ public class LoginTests extends BaseTest {
     String expectedErrorMessage = "There was a problem with your login and/or errors exist in your form.";
 
     Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message is not displayed");
+  }
+
+  @Test(description = "Login page displays when un-logged User clicks on Book ticket tab")
+  public void TC04() {
+    homePage.clickBookTicket();
+    String actualPageHeader = homePage.getPageHeader();
+    String expectedPageHeader = "Login Page";
+
+    Assert.assertEquals(actualPageHeader, expectedPageHeader, "Error Message is not displayed");
   }
 }
