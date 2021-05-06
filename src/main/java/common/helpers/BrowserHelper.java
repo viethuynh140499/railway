@@ -1,10 +1,7 @@
 package common.helpers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,7 +10,6 @@ import org.openqa.selenium.opera.OperaDriver;
 import java.util.concurrent.TimeUnit;
 
 public class BrowserHelper {
-
     public enum DriverType {CHROME, FIREFOX, EDGE, OPERA}
 
     private static WebDriver driver;
@@ -38,11 +34,13 @@ public class BrowserHelper {
                 break;
             case EDGE:
                 WebDriverManager.edgedriver().setup();
-
                 driver = new EdgeDriver();
                 break;
+            default:
+                driver = new ChromeDriver();
+                break;
         }
-//        driver.manage().timeouts().implicitlyWait(Constant.TIME_OUT_IMPLICITLY_WAIT, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Constant.IMPLICITLY_WAIT_TIME_OUT, TimeUnit.SECONDS);
         maximizeBrowser();
     }
 
@@ -65,9 +63,11 @@ public class BrowserHelper {
         getDriver().manage().window().maximize();
     }
 
+    public static void acceptAlert(){
+        getDriver().switchTo().alert().accept();
+    }
 
-    public static void returnPreviousPage() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.history.go(-1)");
+    public static void dismissAlert(){
+        getDriver().switchTo().alert().dismiss();
     }
 }

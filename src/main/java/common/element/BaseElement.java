@@ -39,6 +39,4 @@ public class BaseElement {
         JavascriptExecutor js = (JavascriptExecutor) BrowserHelper.getDriver();
         js.executeScript("arguments[0].scrollIntoView(true);", findElement());
     }
-
-
 }
