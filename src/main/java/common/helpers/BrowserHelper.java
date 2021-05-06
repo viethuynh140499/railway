@@ -43,7 +43,8 @@ public class BrowserHelper {
                 driver = new ChromeDriver();
                 break;
         }
-        driver.manage().timeouts().implicitlyWait(Constant.TIME_OUT_IMPLICITLY_WAIT, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Constant.IMPLICITLY_WAIT_TIME_OUT, TimeUnit.SECONDS);
+
         maximizeBrowser();
     }
 
