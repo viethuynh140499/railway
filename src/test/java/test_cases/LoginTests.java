@@ -18,10 +18,10 @@ public class LoginTests extends BaseTest {
     homePage.clickLoginTab();
     loginPage.login(user);
 
-    String actualResult = homePage.getWelcomeMessage();
-    String expectedResult = "Welcome " + user.getUsername();
+    String actualWelcomeMessage = homePage.getWelcomeMessage();
+    String expectedWelcomeMessage = "Welcome " + user.getUsername();
 
-    Assert.assertEquals(actualResult, expectedResult, "Welcome Message is not displayed");
+    Assert.assertEquals(actualWelcomeMessage, expectedWelcomeMessage, "Welcome Message is not displayed");
   }
 
   @Test(description = "User can't login with blank Username textbox")
@@ -31,10 +31,10 @@ public class LoginTests extends BaseTest {
     homePage.clickLoginTab();
     loginPage.login(user);
 
-    String actualResult = loginPage.getErrorMessage();
-    String expectedResult = "There was a problem with your login and/or errors exist in your form.";
+    String actualErrorMessage = loginPage.getErrorMessage();
+    String expectedErrorMessage = "There was a problem with your login and/or errors exist in your form.";
 
-    Assert.assertEquals(actualResult, expectedResult, "Error message is not displayed");
+    Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message is not displayed");
   }
 
   @Test(description = "User cannot log into Railway with invalid password ")
@@ -44,17 +44,18 @@ public class LoginTests extends BaseTest {
     homePage.clickLoginTab();
     loginPage.login(user);
 
-    String actualResult = loginPage.getErrorMessage();
-    String expectedResult = "There was a problem with your login and/or errors exist in your form.";
+    String actualErrorMessage = loginPage.getErrorMessage();
+    String expectedErrorMessage = "There was a problem with your login and/or errors exist in your form.";
 
-    Assert.assertEquals(actualResult, expectedResult, "Error message is not displayed");
+    Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message is not displayed");
   }
 
   @Test(description = "Login page displays when un-logged User clicks on Book ticket tab")
   public void TC04() {
     homePage.clickBookTicket();
-    String actualResult = homePage.getPageHeader();
-    String expectedResult = "Login Page";
-    Assert.assertEquals(actualResult, expectedResult, "Error Message is not displayed");
+    String actualPageHeader = homePage.getPageHeader();
+    String expectedPageHeader = "Login Page";
+
+    Assert.assertEquals(actualPageHeader, expectedPageHeader, "Error Message is not displayed");
   }
 }
