@@ -3,6 +3,7 @@ package common.element;
 import common.helpers.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -33,6 +34,14 @@ public class BaseElement {
 
     public String getText() {
         return findElement().getText();
+    }
+
+    public boolean isDisplayed() {
+        try {
+            return findElement().isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public void scrollToView() {
