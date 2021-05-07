@@ -35,6 +35,16 @@ public class ChangePasswordTest extends BaseTest {
     changePasswordPage.changePassword(oldPassword, newPassword, newPassword);
     String actualSuccessMessage = changePasswordPage.getSuccessfullyMessage();
     String expectedSuccessMessage = "Your password has been updated!";
+
     Assert.assertEquals(actualSuccessMessage, expectedSuccessMessage, "Change password unsuccessfully");
+
+    homePage.clickLogoutTab();
+    homePage.clickLoginTab();
+    loginPage.login(user);
+
+    String actualWelcomeMessage = homePage.getWelcomeMessage();
+    String expectedWelcomeMessage = "Welcome " + user.getUsername();
+
+    Assert.assertEquals(actualWelcomeMessage, expectedWelcomeMessage, "Welcome Message is not displayed");
   }
 }

@@ -12,27 +12,36 @@ public class GeneralPage {
     private final Tab tabChangePassword = new Tab(By.cssSelector("li a[href$='ChangePassword.cshtml']"));
     private final Tab tabLogout = new Tab(By.cssSelector("li a[href*=Logout]"));
     private final Label lblWelcomeMessage = new Label(By.className("account"));
+
     private final Label lblPageName = new Label(By.cssSelector("#content h1"));
 
 
     public void clickLoginTab() {
         this.tabLogin.click();
     }
-    public void clickBookTicket(){this.tabBookTicket.click();}
+
+    public void clickBookTicket() {
+        this.tabBookTicket.click();
+    }
 
     public String getWelcomeMessage() {
         return this.lblWelcomeMessage.getText();
     }
-    public void clickRegisterTab(){
+
+    public void clickRegisterTab() {
         this.tabRegister.click();
     }
 
-    public void clickMyTicketTab(){
+    public void clickMyTicketTab() {
         this.tabMyTicket.click();
     }
 
+    public void clickLogoutTab() {
+        this.tabLogout.click();
+    }
 
-    public void clickChangePasswordTab(){
+
+    public void clickChangePasswordTab() {
         this.tabChangePassword.click();
     }
 
@@ -47,6 +56,7 @@ public class GeneralPage {
     public boolean isLogOutTabDisplayed() {
         return tabLogout.isDisplayed();
     }
+
     public String getPageHeader() {
         return this.lblPageName.getText();
     }
