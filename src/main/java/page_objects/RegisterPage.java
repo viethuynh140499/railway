@@ -40,5 +40,6 @@ public class RegisterPage extends GeneralPage {
     this.txtPassword.enterText(password);
     this.txtConfirmPassword.enterText(confirmPassword);
     this.txtPid.enterText(pid);
+    this.btnRegister.click();
   }
 }

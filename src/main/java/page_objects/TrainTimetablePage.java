@@ -11,7 +11,6 @@ public class TrainTimetablePage extends GeneralPage {
           "'%s']//parent::tr//td[count(//th[text()='Arrive Station']" +
           "/preceding-sibling::th)+1][text()='%s']//parent::tr//a[text()='book ticket']";
 
-//  private final Table tblTrainTimetable = new Table(By.className("MyTable"));
   private Link lnkBookTicket;
 
  public void clickBookTicket(String departStation, String arriveAt){

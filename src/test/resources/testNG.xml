@@ -8,6 +8,7 @@
             <class name="test_cases.RegisterTests"/>
             <class name="test_cases.BookTicketTest"/>
             <class name="test_cases.MyTicketTest"/>
+            <class name="test_cases.TrainTimetabelTest"/>
         </classes>
     </test>
     <test name="FirefoxTest">

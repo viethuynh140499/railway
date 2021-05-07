@@ -47,7 +47,7 @@ public class LoginTests extends BaseTest {
     loginPage.login(user);
 
     String actualErrorMessage = loginPage.getErrorMessage();
-    String expectedErrorMessage = "There was a problem with your login and/or errors exist in your form.";
+    String expectedErrorMessage = "Invalid username or password. Please try again.";
 
     Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message does not display");
   }

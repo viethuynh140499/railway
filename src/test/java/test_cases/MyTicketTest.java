@@ -33,12 +33,13 @@ public class MyTicketTest extends BaseTest {
     registerPage.registerAccount(user.getUsername(), user.getPassword(), user.getPassword(), user.getPid());
     homePage.clickLoginTab();
     loginPage.login(user);
-    homePage.clickBookTicket();
     bookTicketPage.bookTicket(ticket);
     homePage.clickMyTicketTab();
 
     myTicketPage.cancelTicket(ticket);
 
     Assert.assertFalse(myTicketPage.doesTicketDisplay(ticket));
+
+    Assert.assertTrue(myTicketPage.isErrorMessageDisplayed(),"Error Message does not display");
   }
 }
