@@ -11,7 +11,6 @@ import page_objects.MyTicketPage;
 public class LoginTests extends BaseTest {
   HomePage homePage = new HomePage();
   LoginPage loginPage = new LoginPage();
-  MyTicketPage myTicketPage = new MyTicketPage();
 
   @Test(description = "User can log into Railway with valid username and password")
   public void TC01() {

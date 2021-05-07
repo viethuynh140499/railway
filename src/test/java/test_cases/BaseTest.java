@@ -18,4 +18,5 @@ public class BaseTest {
   public void afterMethod() {
     BrowserHelper.quitBrowser();
   }
+
 }
