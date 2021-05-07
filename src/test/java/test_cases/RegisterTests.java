@@ -5,11 +5,13 @@ import model.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page_objects.HomePage;
+import page_objects.LoginPage;
 import page_objects.RegisterPage;
 
 public class RegisterTests extends BaseTest {
   HomePage homePage = new HomePage();
   RegisterPage registerPage = new RegisterPage();
+  LoginPage loginPage = new LoginPage();
 
   @Test(description = "User can create new account")
   public void TC07(){

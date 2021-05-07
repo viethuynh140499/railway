@@ -23,6 +23,12 @@ public class GeneralPage {
         return this.lblWelcomeMessage.getText();
     }
 
+
+
+    public void clickBookTicket() {
+        this.tabBookTicket.click();
+    }
+
     public void clickRegisterTab() {
         this.tabRegister.click();
     }
@@ -35,9 +41,6 @@ public class GeneralPage {
         this.tabLogout.click();
     }
 
-    public void clickBookTicket() {
-        this.tabBookTicket.click();
-    }
 
     public void clickChangePasswordTab() {
         this.tabChangePassword.click();

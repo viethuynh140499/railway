@@ -28,6 +28,7 @@
             <class name="test_cases.LoginTests"/>
             <class name="test_cases.ChangePasswordTest"/>
             <class name="test_cases.BookTicketTest"/>
+            <class name="test_cases.ChangePasswordTest"/>
         </classes>
     </test>
 </suite>

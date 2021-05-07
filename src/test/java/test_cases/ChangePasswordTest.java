@@ -20,11 +20,7 @@ public class ChangePasswordTest extends BaseTest {
     User user = new User();
     user.setUsername(DataHelper.getRandomValidEmail());
     String oldPassword = DataHelper.getRandomValidPassword();
-    user.setPassword(oldPassword);
-    user.setPid(DataHelper.getRandomValidPID());
 
-    homePage.clickRegisterTab();
-    registerPage.registerAccount(user.getUsername(), user.getPassword(), user.getPassword(), user.getPid());
     homePage.clickLoginTab();
     loginPage.login(user);
     homePage.clickChangePasswordTab();
