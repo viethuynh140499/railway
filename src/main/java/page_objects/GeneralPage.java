@@ -18,15 +18,12 @@ public class GeneralPage {
         this.tabLogin.click();
     }
 
+    public void clickBookTicket() {
+        this.tabBookTicket.click();
+    }
 
     public String getWelcomeMessage() {
         return this.lblWelcomeMessage.getText();
-    }
-
-
-
-    public void clickBookTicket() {
-        this.tabBookTicket.click();
     }
 
     public void clickRegisterTab() {
@@ -40,7 +37,6 @@ public class GeneralPage {
     public void clickLogoutTab() {
         this.tabLogout.click();
     }
-
 
     public void clickChangePasswordTab() {
         this.tabChangePassword.click();

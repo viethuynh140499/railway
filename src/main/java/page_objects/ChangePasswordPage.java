@@ -7,7 +7,6 @@ import model.User;
 import org.openqa.selenium.By;
 
 public class ChangePasswordPage extends GeneralPage{
-
   private final TextBox txtCurrentPassword = new TextBox(By.id("currentPassword"));
   private final TextBox txtNewPassword = new TextBox(By.id("newPassword"));
   private final TextBox txtConfirmPassword = new TextBox(By.id("confirmPassword"));
