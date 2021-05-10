@@ -8,9 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Ticket {
-  private String departFrom;
-  private String departDate;
-  private String arriveAt;
-  private String seatType;
-  private String ticketAmount;
+    private String departFrom;
+    private String departDate;
+    private String arriveAt;
+    private String seatType;
+    private String ticketAmount;
+    private String status;
 }

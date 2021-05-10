@@ -67,12 +67,6 @@ public class RegisterTests extends BaseTest {
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message does not display");
         Assert.assertEquals(actualPasswordErrorMessage, expectedPasswordErrorMessaage, "Error message does not display");
         Assert.assertEquals(actualPIDErrorMessage, expectedPIDErrorMessage, "Error message does not display");
-
-        loginPage.login(user);
-
-        String actualWelcomeMessage = homePage.getWelcomeMessage();
-        String expectedWelcomeMessage = "Welcome " + user.getUsername();
-
-        Assert.assertEquals(actualWelcomeMessage, expectedWelcomeMessage, "Welcome Message is not displayed");
     }
 }
+

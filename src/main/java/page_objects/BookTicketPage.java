@@ -18,13 +18,6 @@ public class BookTicketPage extends GeneralPage {
     private final Label lblPageHeader = new Label(By.cssSelector("#content>h1"));
     private final String dynamicTableCell = "//table/tbody/tr/td[count(//table/tbody/tr/th[.='%s']/preceding-sibling::th)+1]";
 
-    public String getPageHeader() {
-        return this.lblPageHeader.getText();
-    }
-
-    public String getTableCellValue(String header) {
-        return BrowserHelper.findElement(By.xpath(String.format(dynamicTableCell, header))).getText();
-    }
 
     public void bookTicket(Ticket ticket) {
         this.sltDate.scrollToView();
@@ -34,5 +27,21 @@ public class BookTicketPage extends GeneralPage {
         this.sltTicketAmount.selectDropdownOptionByText(ticket.getTicketAmount());
         this.sltArriveAt.selectDropdownOptionByText(ticket.getArriveAt());
         this.btnBookTicket.click();
+    }
+
+    public String getPageHeader() {
+        return this.lblPageHeader.getText();
+    }
+
+    public String getTableCellValue(String header) {
+        return BrowserHelper.findElement(By.xpath(String.format(dynamicTableCell, header))).getText();
+    }
+
+    public boolean isDepartStationSelected(String departStation) {
+        return sltDepartFrom.getSelectedOptionAsText().equals(departStation);
+    }
+
+    public boolean isArriveStationSelected(String arriveStation) {
+        return sltArriveAt.getSelectedOptionAsText().equals(arriveStation);
     }
 }

@@ -10,9 +10,14 @@ public class GeneralPage {
     private final Tab tabBookTicket = new Tab(By.cssSelector("li a[href$='BookTicketPage.cshtml'"));
     private final Tab tabMyTicket = new Tab(By.cssSelector("li a[href$='ManageTicket.cshtml']"));
     private final Tab tabChangePassword = new Tab(By.cssSelector("li a[href$='ChangePassword.cshtml']"));
+    private final Tab tabTrainTimetable = new Tab(By.cssSelector("li a[href$='TrainTimeListPage.cshtml']"));
     private final Tab tabLogout = new Tab(By.cssSelector("li a[href*=Logout]"));
     private final Label lblWelcomeMessage = new Label(By.className("account"));
     private final Label lblPageName = new Label(By.cssSelector("#content h1"));
+
+    public void clickTrainTimetableTab() {
+        this.tabTrainTimetable.click();
+    }
 
     public void clickLoginTab() {
         this.tabLogin.click();
