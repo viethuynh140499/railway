@@ -10,7 +10,7 @@ public class ChangePasswordPage extends GeneralPage{
   private final TextBox txtCurrentPassword = new TextBox(By.id("currentPassword"));
   private final TextBox txtNewPassword = new TextBox(By.id("newPassword"));
   private final TextBox txtConfirmPassword = new TextBox(By.id("confirmPassword"));
-  private final Button btnChangePassword = new Button(By.cssSelector("#ChangePW .form-actions input"));
+  private final Button btnChangePassword = new Button(By.cssSelector(".form-actions input"));
   private final Label lblChangePassword = new Label(By.className("message"));
   private final Label lblConfirmPasswordErrorMessage = new Label(By.cssSelector(".confirm-password>.validation-error"));
   private final Label lblNewPasswordErrorMessage = new Label(By.cssSelector(".new-password>.validation-error"));

@@ -5,14 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 
 import java.util.concurrent.TimeUnit;
 
 public class BrowserHelper {
-    public enum DriverType {CHROME, FIREFOX, EDGE, OPERA}
+    public enum DriverType {CHROME, FIREFOX, OPERA}
 
     private static WebDriver driver;
 
@@ -33,10 +32,6 @@ public class BrowserHelper {
             case OPERA:
                 WebDriverManager.operadriver().setup();
                 driver = new OperaDriver();
-                break;
-            case EDGE:
-                WebDriverManager.edgedriver().setup();
-                driver = new EdgeDriver();
                 break;
             default:
                 driver = new ChromeDriver();

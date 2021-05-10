@@ -10,41 +10,43 @@ import page_objects.LoginPage;
 import page_objects.RegisterPage;
 
 public class ChangePasswordTest extends BaseTest {
-  HomePage homePage = new HomePage();
-  RegisterPage registerPage = new RegisterPage();
-  LoginPage loginPage = new LoginPage();
-  ChangePasswordPage changePasswordPage = new ChangePasswordPage();
-
-  @Test(description = "User can change password")
-  public void TC09() {
+    HomePage homePage = new HomePage();
+    RegisterPage registerPage = new RegisterPage();
+    LoginPage loginPage = new LoginPage();
+    ChangePasswordPage changePasswordPage = new ChangePasswordPage();
     User user = new User();
-    user.setUsername(DataHelper.getRandomValidEmail());
-    String oldPassword = DataHelper.getRandomValidPassword();
-    user.setPassword(oldPassword );
-    user.setPid(DataHelper.getRandomValidPID());
 
-    homePage.clickRegisterTab();
-    registerPage.registerAccount(user);
-    homePage.clickLoginTab();
-    loginPage.login(user);
-    homePage.clickChangePasswordTab();
+    @Test(description = "User can change password")
+    public void TC09() {
+        user.setUsername(DataHelper.getRandomValidEmail());
+        String oldPassword = DataHelper.getRandomValidPassword();
+        user.setPassword(oldPassword);
+        user.setPid(DataHelper.getRandomValidPID());
 
-    String newPassword = DataHelper.getRandomValidPassword();
-    user.setPassword(newPassword);
+        homePage.clickRegisterTab();
+        registerPage.registerAccount(user.getUsername(), oldPassword, oldPassword, user.getPid());
 
-    changePasswordPage.changePassword(oldPassword, newPassword, newPassword);
-    String actualSuccessMessage = changePasswordPage.getSuccessfullyMessage();
-    String expectedSuccessMessage = "Your password has been updated!";
+        homePage.clickLoginTab();
+        loginPage.login(user);
 
-    Assert.assertEquals(actualSuccessMessage, expectedSuccessMessage, "Change password unsuccessfully");
+        homePage.clickChangePasswordTab();
 
-    homePage.clickLogoutTab();
-    homePage.clickLoginTab();
-    loginPage.login(user);
+        String newPassword = DataHelper.getRandomValidPassword();
+        user.setPassword(newPassword);
 
-    String actualWelcomeMessage = homePage.getWelcomeMessage();
-    String expectedWelcomeMessage = "Welcome " + user.getUsername();
+        changePasswordPage.changePassword(oldPassword, newPassword, newPassword);
+        String actualSuccessMessage = changePasswordPage.getSuccessfullyMessage();
+        String expectedSuccessMessage = "Your password has been updated!";
 
-    Assert.assertEquals(actualWelcomeMessage, expectedWelcomeMessage, "Welcome Message is not displayed");
-  }
+        Assert.assertEquals(actualSuccessMessage, expectedSuccessMessage, "Change password unsuccessfully");
+
+        homePage.clickLogoutTab();
+        homePage.clickLoginTab();
+        loginPage.login(user);
+
+        String actualWelcomeMessage = homePage.getWelcomeMessage();
+        String expectedWelcomeMessage = "Welcome " + user.getUsername();
+
+        Assert.assertEquals(actualWelcomeMessage, expectedWelcomeMessage, "Welcome Message is not displayed");
+    }
 }

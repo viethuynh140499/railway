@@ -7,19 +7,19 @@ import model.User;
 import org.openqa.selenium.By;
 
 public class LoginPage extends GeneralPage {
-  private final TextBox txtEmail = new TextBox(By.id("username"));
-  private final TextBox txtPassword = new TextBox(By.id("password"));
-  private final Button btnLogin = new Button(By.cssSelector(".LoginForm .form-actions input"));
-  private final Label lblErrorMessage = new Label(By.cssSelector("#content .message"));
+    private final TextBox txtEmail = new TextBox(By.id("username"));
+    private final TextBox txtPassword = new TextBox(By.id("password"));
+    private final Button btnLogin = new Button(By.cssSelector(".LoginForm .form-actions input"));
+    private final Label lblErrorMessage = new Label(By.cssSelector("#content .message"));
 
-  public void login(User user) {
-    this.btnLogin.scrollToView();
-    this.txtEmail.enterText(user.getUsername());
-    this.txtPassword.enterText(user.getPassword());
-    this.btnLogin.submit();
-  }
+    public void login(User user) {
+        this.btnLogin.scrollToView();
+        this.txtEmail.enterText(user.getUsername());
+        this.txtPassword.enterText(user.getPassword());
+        this.btnLogin.click();
+    }
 
-  public String getErrorMessage() {
-    return this.lblErrorMessage.getText();
-  }
+    public String getErrorMessage() {
+        return this.lblErrorMessage.getText();
+    }
 }
