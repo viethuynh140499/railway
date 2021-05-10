@@ -43,9 +43,6 @@ public class LoginTests extends BaseTest {
     public void TC03() {
         User user = new User(Constant.USERNAME, Constant.INVALID_PASSWORD);
 
-        homePage.clickLoginTab();
-        loginPage.login(user);
-
         String actualErrorMessage = loginPage.getErrorMessage();
         String expectedErrorMessage = "Invalid username or password. Please try again.";
 

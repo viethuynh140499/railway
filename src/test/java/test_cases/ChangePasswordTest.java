@@ -14,21 +14,19 @@ public class ChangePasswordTest extends BaseTest {
     RegisterPage registerPage = new RegisterPage();
     LoginPage loginPage = new LoginPage();
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
-    User user = new User();
 
     @Test(description = "User can change password")
     public void TC09() {
+        User user = new User();
         user.setUsername(DataHelper.getRandomValidEmail());
         String oldPassword = DataHelper.getRandomValidPassword();
         user.setPassword(oldPassword);
         user.setPid(DataHelper.getRandomValidPID());
 
         homePage.clickRegisterTab();
-        registerPage.registerAccount(user.getUsername(), oldPassword, oldPassword, user.getPid());
-
+        registerPage.registerAccount(user.getUsername(), user.getPassword(), user.getPassword(), user.getPid());
         homePage.clickLoginTab();
         loginPage.login(user);
-
         homePage.clickChangePasswordTab();
 
         String newPassword = DataHelper.getRandomValidPassword();

@@ -48,4 +48,17 @@ public class BaseElement {
         JavascriptExecutor js = (JavascriptExecutor) BrowserHelper.getDriver();
         js.executeScript("arguments[0].scrollIntoView(true);", findElement());
     }
+
+    public boolean isSelected() {
+        return findElement().isSelected();
+    }
+
+    public static boolean doesElementExist(By locator) {
+        try {
+            return BrowserHelper.getDriver().findElement(locator).isDisplayed();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
